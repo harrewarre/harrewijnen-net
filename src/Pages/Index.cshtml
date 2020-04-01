@@ -1,0 +1,21 @@
+﻿@page
+@using Blog.Code
+@inject IPostResolver _resolver;
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div>
+    <h1>Welcome</h1>
+    @{
+        foreach(var m in await _resolver.GetMetadataIndex()) {
+            <div>
+                <a asp-page="@m.Location"><h1>@m.Title</h1></a>
+                <p>@m.Description</p>
+                <p>@string.Join(", ", m.Tags)</p>
+                <p>@m.Slug</p>
+                <small>@m.Created.ToString("dd-MM-yyyy")</small>
+            </div>
+        }
+    }
+</div>

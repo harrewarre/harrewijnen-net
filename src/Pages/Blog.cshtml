@@ -1,0 +1,29 @@
+@page "{slug?}"
+@using Blog.Code
+@inject IPostResolver _postResolver;
+
+<div>
+    @{
+        var slug = RouteData.Values["slug"] as string;
+
+        if(!string.IsNullOrWhiteSpace(slug)) {
+            var post = await _postResolver.GetPost(slug);
+            ViewData["Title"] = post.Metadata.Title;
+
+            <div>
+                <h1>@post.Metadata.Title</h1>
+                <p>@post.Metadata.Description</p>
+                <p>@post.Metadata.Created.ToString("dd-MM-yyyy")</p>
+                <p>@string.Join(", ", post.Metadata.Tags)</p>
+            </div>
+
+            <article>
+                @Html.Raw(post.HtmlContent)
+            </article>
+        }
+        else 
+        {
+            <p>Post not found.</p>
+        }
+    }
+</div>

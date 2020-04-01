@@ -1,0 +1,33 @@
+@page
+@using Blog.Code
+@using System.Linq
+@inject IPostResolver _postResolver
+@{
+    var index = await _postResolver.GetMetadataIndex();
+    Response.ContentType = "application/rss+xml";
+}
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <atom:link href="https://www.harrewijnen.net/feed" rel="self" type="application/rss+xml"></atom:link>
+        <title>Harrewijnen.netL</title>
+        <link />http://www.harrewijnen.net</link>
+        <pubDate>@DateTime.UtcNow.ToString("r")</pubDate>
+        <language>en-us</language>
+        <generator>Harre's custom RSS feed generator v1</generator>
+        <description>Ramblings from a guy writing code and other things</description>
+        @foreach (var i in index.Take(20))
+        {
+            <item>
+                <guid isPermaLink="true">https://www.harrewijnen.net/blog/@i.Slug</guid>
+                <title>@i.Title</title>
+                @Html.Raw($"<link>https://www.harrewijnen.net/blog/{i.Slug}</link>")
+                <description>@i.Description</description>
+                @foreach (var t in i.Tags)
+                {
+                <category>@t</category>
+                }
+            </item>
+        }
+    </channel>
+</rss> 
