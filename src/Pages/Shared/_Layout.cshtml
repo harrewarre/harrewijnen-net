@@ -4,18 +4,19 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - harrewijnen.net</title>
+    <link rel="stylesheet" href="/static/styles.css">
 </head>
 <body>
     <header>
+        <div class="container"></div>
     </header>
-    <div>
-        <main>
-            @RenderBody()
-        </main>
-    </div>
-
+    <main>
+        <div class="container">
+                @RenderBody()
+        </div>
+    </main>
     <footer>
-        <div>
+        <div class="container">
             &copy; @DateTime.Now.Year - harrewijnen.net
         </div>
     </footer>

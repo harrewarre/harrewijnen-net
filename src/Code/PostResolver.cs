@@ -11,7 +11,6 @@ namespace Blog.Code
     public interface IPostResolver
     {
         Task<IEnumerable<PostMetadata>> GetMetadataIndex();
-
         Task<Post> GetPost(string slug);
     }
 
