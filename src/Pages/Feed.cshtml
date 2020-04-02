@@ -3,6 +3,8 @@
 @using System.Linq
 @inject IPostResolver _postResolver
 @{
+    Layout = null; 
+
     var index = await _postResolver.GetMetadataIndex();
     Response.ContentType = "application/rss+xml";
 }

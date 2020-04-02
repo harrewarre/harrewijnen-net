@@ -19,10 +19,36 @@ a {
     color: #0066CC;
 }
 
+ul {
+    list-style-position: inside;
+}
+
 .container {
     max-width: 800px;
     margin: 0 auto;
 }
+
+/* -- Page header -- */
+.header {
+    padding: 5px 0 25px 0;
+}
+
+.header > h1 {
+    font-weight: normal;
+    font-size: 24px;
+}
+
+/* -- Page footer -- */
+.footer {
+    font-size: 12px;
+}
+
+/* -- Page navigation -- */
+.navigation {
+    padding-bottom: 30px;
+}
+
+/* -- Metadata -- */
 
 .metadata {
     color: #111;
@@ -37,15 +63,11 @@ a {
 }
 
 .metadata > .created {
-    padding: 5px 0;
+    font-size: 12px;
 }
 
-.metadata > .created,
 .metadata > small {
     font-size: 14px;
-}
-
-.metadata > small {
     display: inline-block;
     color: #111;
     background-color: #ddd;
@@ -55,4 +77,17 @@ a {
 
 .metadata > * {
     display: block;
+}
+
+/* -- Blog archive -- */
+.post-group {
+    background-color: #fff;
+    border-bottom: 1px solid #ccc;
+    padding: 15px;
+    margin-bottom: 15px;
+}
+
+/* -- SmallPost partial -- */
+.small-post {
+    padding: 10px 0;
 }

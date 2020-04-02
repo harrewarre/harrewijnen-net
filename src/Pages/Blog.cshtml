@@ -1,5 +1,6 @@
 @page "{slug?}"
 @using Blog.Code
+@using System.Globalization
 @inject IPostResolver _postResolver;
 
 <div>
@@ -23,7 +24,29 @@
         }
         else 
         {
-            <p>Post not found.</p>
+            <h1>Archive</h1>
+            <section>
+
+                @{
+                    var index = await _postResolver.GetMetadataIndex();
+                    string GetMonthName(int num) => CultureInfo.InvariantCulture.DateTimeFormat.GetMonthName(num);
+                    var grouped = index.GroupBy(p => new { p.Created.Year, p.Created.Month });
+
+                    foreach(var gr in grouped) 
+                    {
+                        <section class="post-group">
+                            <h2>@GetMonthName(gr.Key.Month) @gr.Key.Year</h2>
+                            <ul>
+                                @foreach(var p in gr)
+                                {
+                                    <partial name="_SmallPost" model="p"></partial>
+                                }
+                            </ul>
+                        </section>
+                    }
+                }
+
+            </section>
         }
     }
 </div>

@@ -8,14 +8,26 @@
 </head>
 <body>
     <header>
-        <div class="container"></div>
+        <div class="container header">
+            <h1>harrewijnen.net</h1>
+            <small>ramblings from a guy writing code and other things</small>
+        </div>
     </header>
+    <nav>
+        <div class="container navigation">
+            <a href="/">Home</a>
+            <a href="/blog">Blog</a>
+            <a href="https://www.twitter.com/harrewarre">Twitter</a>
+            <a href="https://www.github.com/harrewarre">Github</a>
+            <a href="/feed">RSS</a>
+        </div>
+    </nav>
     <main>
         <div class="container">
                 @RenderBody()
         </div>
     </main>
-    <footer>
+    <footer class="footer">
         <div class="container">
             &copy; @DateTime.Now.Year - harrewijnen.net
         </div>
