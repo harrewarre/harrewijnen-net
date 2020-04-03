@@ -1,0 +1,8 @@
+@using Blog.Code.Models
+@model PostMetadata
+<section class="content-block post-metadata">
+    <p class="created">@Model.Created.ToString("dd-MM-yyyy")</p>
+    @foreach(var t in Model.Tags) {
+        <small class="tag">@t</small>
+    }
+</section>

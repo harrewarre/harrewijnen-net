@@ -6,88 +6,82 @@
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
-html,
 body {
-    background-color: #f7f7f7;
+    background-color: #fff;
 }
 
-body {
-    padding: 15px;
+header h1,
+header a {
+    font-size: 16px;
+}
+
+header > div > div,
+header nav {
+    display: flex;
+}
+
+header nav a {
+    color: #111;
+    margin-left: 10px;
+}
+
+header > small {
+    font-size: 12px;
+}
+
+footer {
+    display: block;
+    margin-top: -20px;
+    text-align: center;
+    font-size: 12px;
 }
 
 a {
-    color: #0066CC;
-}
-
-ul {
-    list-style-position: inside;
+    color: #111;
 }
 
 .container {
-    max-width: 800px;
+    max-width: 500px;
+    padding: 15px;
     margin: 0 auto;
 }
 
-/* -- Page header -- */
-.header {
-    padding: 5px 0 25px 0;
-}
-
-.header > h1 {
-    font-weight: normal;
-    font-size: 24px;
-}
-
-/* -- Page footer -- */
-.footer {
-    font-size: 12px;
-}
-
-/* -- Page navigation -- */
-.navigation {
-    padding-bottom: 30px;
-}
-
-/* -- Metadata -- */
-
-.metadata {
-    color: #111;
-    background-color: #fff;
+.content-block {
     padding: 15px;
-    border-bottom: 1px solid #ccc;
-    margin-bottom: 15px;
+    background-color: #f7f7f7;
+    border-bottom: 1px solid #999;
+    border-radius: 5px;
+    margin-bottom: 30px;
 }
 
-.metadata > .description {
-    padding: 10px 0;
+.post-metadata .title {
+    font-size: 18px;
 }
 
-.metadata > .created {
+.grouped-post .created,
+.post-metadata .created {
     font-size: 12px;
+    color: #666;
+    margin: 2px 0;
 }
 
-.metadata > small {
-    font-size: 14px;
-    display: inline-block;
-    color: #111;
-    background-color: #ddd;
-    padding: 2px 8px;
+.post-metadata .description {
+    margin: 5px 0;
+}
+
+.post-metadata .tag {
+    background-color: #eee;
+    color: #666;
+    padding: 2px 6px;
     border-radius: 10px;
+    margin: 0 4px 0 -2px;
 }
 
-.metadata > * {
-    display: block;
+.post-group h2 {
+    font-size: 18px;
+    margin: 30px 0 10px 0;
 }
 
-/* -- Blog archive -- */
-.post-group {
-    background-color: #fff;
-    border-bottom: 1px solid #ccc;
-    padding: 15px;
-    margin-bottom: 15px;
-}
-
-/* -- SmallPost partial -- */
-.small-post {
-    padding: 10px 0;
+.grouped-post h1 {
+    font-size: 16px;
 }

@@ -11,41 +11,35 @@
             var post = await _postResolver.GetPost(slug);
             ViewData["Title"] = post.Metadata.Title;
 
-            <div>
-                <h1>@post.Metadata.Title</h1>
-                <p>@post.Metadata.Description</p>
-                <p>@post.Metadata.Created.ToString("dd-MM-yyyy")</p>
-                <p>@string.Join(", ", post.Metadata.Tags)</p>
-            </div>
-
-            <article>
+            <article class="content-block post-content">
                 @Html.Raw(post.HtmlContent)
             </article>
+
+            <partial name="_PostSummary" model="post.Metadata"></partial>
         }
         else 
         {
             <h1>Archive</h1>
             <section>
+            @{
+                ViewData["Title"] = "Archive";
+                var index = await _postResolver.GetMetadataIndex();
+                string GetMonthName(int num) => CultureInfo.InvariantCulture.DateTimeFormat.GetMonthName(num);
+                var grouped = index.GroupBy(p => new { p.Created.Year, p.Created.Month });
 
-                @{
-                    var index = await _postResolver.GetMetadataIndex();
-                    string GetMonthName(int num) => CultureInfo.InvariantCulture.DateTimeFormat.GetMonthName(num);
-                    var grouped = index.GroupBy(p => new { p.Created.Year, p.Created.Month });
-
-                    foreach(var gr in grouped) 
-                    {
-                        <section class="post-group">
-                            <h2>@GetMonthName(gr.Key.Month) @gr.Key.Year</h2>
-                            <ul>
-                                @foreach(var p in gr)
-                                {
-                                    <partial name="_SmallPost" model="p"></partial>
-                                }
-                            </ul>
-                        </section>
-                    }
+                foreach(var gr in grouped) 
+                {
+                    <section class="post-group">
+                        <h2>@GetMonthName(gr.Key.Month) @gr.Key.Year</h2>
+                        <ul>
+                            @foreach(var p in gr)
+                            {
+                                <partial name="_GroupedPost" model="p"></partial>
+                            }
+                        </ul>
+                    </section>
                 }
-
+            }
             </section>
         }
     }
