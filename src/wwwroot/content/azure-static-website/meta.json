@@ -1,0 +1,11 @@
+{
+    "title": "Setting up an Azure Storage static website",
+    "summary": "How to set up hosting for your static website on Azure Storage",
+    "slug": "azure-static-website",
+    "tags": [
+        "azure",
+        "static website",
+        "itq"
+    ],
+    "created": "2019-01-03"
+}

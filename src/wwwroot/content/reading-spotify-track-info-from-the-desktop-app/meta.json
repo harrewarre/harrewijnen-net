@@ -1,0 +1,10 @@
+{
+  "slug": "reading-spotify-track-info-from-the-desktop-app",
+  "title": "Read Spotify track info using C#",
+  "summary": "Spotify recently updated the desktop app again and it is once again possible to read current track info directly from it.",
+  "tags": [
+    "C#",
+    "Spotify"
+  ],
+  "created": "2015-10-09T00:00:00"
+}

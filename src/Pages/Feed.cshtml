@@ -24,7 +24,7 @@
                 <guid isPermaLink="true">https://www.harrewijnen.net/blog/@i.Slug</guid>
                 <title>@i.Title</title>
                 @Html.Raw($"<link>https://www.harrewijnen.net/blog/{i.Slug}</link>")
-                <description>@i.Description</description>
+                <description>@i.Summary</description>
                 @foreach (var t in i.Tags)
                 {
                 <category>@t</category>

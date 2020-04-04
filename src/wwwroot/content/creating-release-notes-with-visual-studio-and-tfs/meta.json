@@ -1,0 +1,10 @@
+{
+    "title": "Creating release notes with Visual Studio and TFS",
+    "summary": "For that one time you need release notes but forgot to track what was changed.",
+    "slug": "creating-release-notes-with-visual-studio-and-tfs",
+    "tags": [
+        "TFS",
+        "Release notes"
+    ],
+    "created": "2015-05-21"
+}

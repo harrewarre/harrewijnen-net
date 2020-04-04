@@ -1,0 +1,12 @@
+{
+  "slug": "posting-json-to-a-web-api-controller",
+  "title": "POST-ing JSON to an ASP.NET Web API controller",
+  "summary": "So you want to post some JSON to an ASP. Here\u0027s a quick primer.",
+  "tags": [
+    "Javascript",
+    "jQuery",
+    "C#",
+    "ASP.NET"
+  ],
+  "created": "2016-01-12T00:00:00"
+}

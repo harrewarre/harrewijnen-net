@@ -1,0 +1,11 @@
+{
+  "slug": "my-first-asp-net-core-app-on-cloud-foundry",
+  "title": "My first ASP.NET Core app on Cloud Foundry",
+  "summary": "A look at deploying a dotnet core app on Cloud Foundry.",
+  "tags": [
+    "Dotnet core",
+    "Cloud Foundry",
+    "itq"
+  ],
+  "created": "2016-03-30T00:00:00"
+}

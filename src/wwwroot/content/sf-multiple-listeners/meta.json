@@ -1,0 +1,13 @@
+{
+  "slug": "sf-multiple-listeners",
+  "title": "Multiple listeners for your Service Fabric service",
+  "summary": "Enable multiple listeners on a Service Fabric service and seperate the entrypoint of the service from the actual implementation.",
+  "tags": [
+    "Azure",
+    "Service Fabric",
+    "C#",
+    "Microservices",
+    "itq"
+  ],
+  "created": "2018-03-31T00:00:00"
+}

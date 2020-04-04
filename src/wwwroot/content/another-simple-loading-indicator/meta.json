@@ -1,0 +1,10 @@
+{
+    "title": "Another simple loading indicator",
+    "summary": "Here is another loading indicator for when your webpage is busy waiting for a server request to come back with an answer.",
+    "slug": "another-simple-loading-indicator",
+    "tags": [
+        "HTML",
+        "CSS"
+    ],
+    "created": "2016-01-14"
+}

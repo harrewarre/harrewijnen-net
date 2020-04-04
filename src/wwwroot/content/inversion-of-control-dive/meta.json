@@ -1,0 +1,12 @@
+{
+  "slug": "inversion-of-control-dive",
+  "title": "Getting started with Inversion of Control",
+  "summary": "Alright, lets dive straight into the deep end and take a look at Inversion of Control.",
+  "tags": [
+    "C#",
+    "IoC",
+    "Dependency injection",
+    "itq"
+  ],
+  "created": "2015-04-26T00:00:00"
+}

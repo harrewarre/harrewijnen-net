@@ -1,0 +1,11 @@
+{
+    "title": "Basic string templating in C#",
+    "summary": "Every solution I've worked on required some form of communication via e-mail or other form of text to the outside world, reporting, notifications or something else.",
+    "slug": "basic-string-templating-in-c",
+    "tags": [
+        "C#",
+        "String templating",
+        "itq"
+    ],
+    "created": "2015-07-07"
+}

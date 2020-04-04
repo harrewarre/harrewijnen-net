@@ -1,0 +1,13 @@
+{
+    "title": "ASP.NET Core logging on Cloud Foundry",
+    "summary": "Using ILogger to write logs on Cloud Foundry",
+    "slug": "cf-netcore-logging",
+    "tags": [
+        "cloud foundry",
+        "asp.net core",
+        "dotnet core",
+        "logging",
+        "itq"
+    ],
+    "created": "2019-01-10"
+}

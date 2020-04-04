@@ -34,7 +34,9 @@ namespace Blog.Code
         public async Task<IEnumerable<PostMetadata>> GetMetadataIndex()
         {
             var paths = Directory.GetDirectories(_contentRoot);
-            return await Task.WhenAll(paths.Select(p => LoadMetadata(p)));
+            var index = await Task.WhenAll(paths.Select(p => LoadMetadata(p)));
+
+            return index.OrderByDescending(p => p.Created);
         }
 
         public async Task<Post> GetPost(string slug)

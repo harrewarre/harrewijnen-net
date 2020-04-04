@@ -3,7 +3,7 @@
 <section class="content-block post-metadata">
     <a class="title" href="@Model.Location"><h1>@Model.Title</h1></a>
     <p class="created">Created: @Model.Created.ToString("dd-MM-yyyy")</p>
-    <p class="description">@Model.Description</p>
+    <p class="description">@Model.Summary</p>
     @foreach(var t in Model.Tags) {
         <small class="tag">@t</small>
     }

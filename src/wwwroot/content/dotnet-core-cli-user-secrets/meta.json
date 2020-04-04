@@ -1,0 +1,10 @@
+{
+    "title": "Dotnet Core CLI user secrets",
+    "summary": "User secrets are what you use for settings in a dotnet core app that you don't want leaking into your repos.",
+    "slug": "dotnet-core-cli-user-secrets",
+    "tags": [
+        "Dotnet Core",
+        "itq"
+    ],
+    "created": "2017-04-20"
+}

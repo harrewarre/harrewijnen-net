@@ -1,0 +1,11 @@
+{
+  "slug": "uploading-files-filereader",
+  "title": "Uploading files - a simple approach",
+  "summary": "Upload (smallish) images (with preview) with some Javascript and HTML",
+  "tags": [
+    "HTML",
+    "Javascript",
+    "itq"
+  ],
+  "created": "2017-07-31T00:00:00"
+}

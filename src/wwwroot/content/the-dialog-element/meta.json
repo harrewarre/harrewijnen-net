@@ -1,0 +1,12 @@
+{
+  "slug": "the-dialog-element",
+  "title": "The dialog element",
+  "summary": "I was grinding my teeth on a z-index problem today. I found out about the dialog element and all was saved.",
+  "tags": [
+    "Javascript",
+    "HTML",
+    "CSS",
+    "itq"
+  ],
+  "created": "2016-07-06T00:00:00"
+}
