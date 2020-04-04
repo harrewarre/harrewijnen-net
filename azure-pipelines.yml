@@ -1,0 +1,23 @@
+trigger:
+- master
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+steps:
+  - task: DotNetCoreCLI@2
+    displayName: 'Build netcore app'
+    inputs:
+      command: 'publish'
+      publishWebProjects: true
+      arguments: '-c production -o $(Build.ArtifactStagingDirectory)'
+      zipAfterPublish: true
+
+  - task: AzureRmWebAppDeployment@4
+    displayName: 'Deploy to Azure app service'
+    inputs:
+      ConnectionType: 'AzureRM'
+      azureSubscription: 'Converted Windows Azure  MSDN - Visual Studio Premium(6cf89ac8-8099-46ac-bbd1-e4955e6b65c9)'
+      appType: 'webApp'
+      WebAppName: 'harrewijnen'
+      packageForLinux: '$(Build.ArtifactStagingDirectory)/**/*.zip'
