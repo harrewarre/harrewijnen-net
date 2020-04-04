@@ -2,17 +2,17 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-
+    color: #FFDB6E;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
 body {
-    background-color: #fff;
+    background-color: #3E6E93;
 }
 
 header h1,
 header a {
-    font-size: 16px;
+    font-size: 20px;
 }
 
 header > div > div,
@@ -21,12 +21,11 @@ header nav {
 }
 
 header nav a {
-    color: #111;
     margin-left: 10px;
 }
 
-header > small {
-    font-size: 12px;
+header small {
+    opacity: .75;
 }
 
 footer {
@@ -36,20 +35,16 @@ footer {
     font-size: 12px;
 }
 
-a {
-    color: #111;
-}
-
 .container {
-    max-width: 500px;
+    max-width: 750px;
     padding: 15px;
     margin: 0 auto;
 }
 
 .content-block {
     padding: 15px;
-    background-color: #f7f7f7;
-    border-bottom: 1px solid #999;
+    background-color: #294F6D;
+    border-bottom: 2px solid #0A1822;
     border-radius: 5px;
     margin-bottom: 30px;
 }
@@ -61,27 +56,93 @@ a {
 .grouped-post .created,
 .post-metadata .created {
     font-size: 12px;
-    color: #666;
     margin: 2px 0;
+    opacity: .5;
 }
 
 .post-metadata .description {
-    margin: 5px 0;
+    opacity: .75;
+    margin-top: 5px;
 }
 
 .post-metadata .tag {
-    background-color: #eee;
-    color: #666;
-    padding: 2px 6px;
-    border-radius: 10px;
-    margin: 0 4px 0 -2px;
+    opacity: .5;
 }
 
-.post-group h2 {
+.archive h2 {
     font-size: 18px;
     margin: 30px 0 10px 0;
 }
 
+.grouped-post {
+    margin-bottom: 10px;
+}
+
 .grouped-post h1 {
     font-size: 16px;
+}
+
+/* --- Blogpost stuff --- */
+
+.post-content h1 {
+    font-size: 24px;
+}
+
+.post-content h2 {
+    font-size: 22px;
+}
+
+.post-content h3 {
+    font-size: 20px;
+}
+
+.post-content h4,
+.post-content h5,
+.post-content h6 {
+    font-size: 18px;
+}
+
+.post-content img {
+    margin: 20px 0;
+    width: 100%;
+}
+
+.post-content h1,
+.post-content h2,
+.post-content h3,
+.post-content h4,
+.post-content h5,
+.post-content h6,
+.post-content p,
+.post-content pre,
+.post-content hr {
+    margin-bottom: 20px;
+}
+
+.post-content pre,
+.post-content code {
+    font-family: monospace;
+}
+
+.post-content pre {
+    overflow-y: auto;
+}
+
+.post-content code {
+    word-wrap: break-word;
+}
+
+@media screen and (max-width: 450px) {
+    header > div > div  {
+        display: block;
+    }
+
+    header nav {
+        margin: 5px 0;
+    }
+
+    header nav a {
+        margin-left: 0;
+        margin-right: 10px;
+    }
 }

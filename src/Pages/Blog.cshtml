@@ -20,7 +20,7 @@
         else 
         {
             <h1>Archive</h1>
-            <section>
+            <section class="archive">
             @{
                 ViewData["Title"] = "Archive";
                 var index = await _postResolver.GetMetadataIndex();
@@ -29,8 +29,8 @@
 
                 foreach(var gr in grouped) 
                 {
-                    <section class="post-group">
-                        <h2>@GetMonthName(gr.Key.Month) @gr.Key.Year</h2>
+                    <h2>@GetMonthName(gr.Key.Month) @gr.Key.Year</h2>
+                    <section class="content-block post-group">
                         <ul>
                             @foreach(var p in gr)
                             {
