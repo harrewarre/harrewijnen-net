@@ -18,6 +18,7 @@ namespace Blog
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddApplicationInsightsTelemetry();
             services.AddSingleton<IPostResolver>(provider =>
             {
                 var hostingEnvironment = provider.GetService<IWebHostEnvironment>();
