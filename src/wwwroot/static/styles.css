@@ -10,6 +10,10 @@ body {
     background-color: #3E6E93;
 }
 
+li {
+    list-style-position: inside;
+}
+
 header h1,
 header a {
     font-size: 20px;
@@ -115,7 +119,9 @@ footer {
 .post-content h6,
 .post-content p,
 .post-content pre,
-.post-content hr {
+.post-content hr,
+.post-content ul,
+.post-content ol {
     margin-bottom: 20px;
 }
 
@@ -126,6 +132,7 @@ footer {
 
 .post-content pre {
     overflow-y: auto;
+    padding: 5px 0;
 }
 
 .post-content code {
