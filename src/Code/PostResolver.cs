@@ -41,15 +41,22 @@ namespace Blog.Code
 
         public async Task<Post> GetPost(string slug)
         {
-            var contentPath = Path.Join(_contentRoot, slug);
+            try
+            {
+                var contentPath = Path.Join(_contentRoot, slug);
 
-            var meta = await LoadMetadata(contentPath);
-            var content = await LoadContent(contentPath);
+                var meta = await LoadMetadata(contentPath);
+                var content = await LoadContent(contentPath);
 
-            var post = new Post(meta);
-            post.HtmlContent = content;
+                var post = new Post(meta);
+                post.HtmlContent = content;
 
-            return post;
+                return post;
+            }
+            catch
+            {
+                return null;
+            }
         }
 
         private async Task<PostMetadata> LoadMetadata(string path)

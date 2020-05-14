@@ -9,6 +9,12 @@
 
         if(!string.IsNullOrWhiteSpace(slug)) {
             var post = await _postResolver.GetPost(slug);
+
+            if(post == null) {
+                Response.Redirect("/404");
+                return;
+            }
+
             ViewData["Title"] = post.Metadata.Title;
 
             <article class="content-block post-content">

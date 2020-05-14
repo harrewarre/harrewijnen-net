@@ -38,6 +38,8 @@ namespace Blog
             app.UseStaticFiles();
             app.UseRouting();
 
+            app.UseStatusCodePagesWithRedirects("/error?code={0}");
+
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapRazorPages();
