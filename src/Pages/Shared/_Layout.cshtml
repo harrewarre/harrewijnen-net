@@ -8,28 +8,17 @@
     <link rel="stylesheet" href="/static/styles.css">
 </head>
 <body>
-    <header>
-        <div class="container">
-            <div>
-                <h1>harrewijnen.net</h1>
-                <nav>
-                    <a href="/">home</a>
-                    <a href="/blog">archive</a>
-                    <a href="https://www.twitter.com/harrewarre">twitter</a>
-                    <a href="https://www.github.com/harrewarre">github</a>
-                    <a href="/feed">rss</a>
-                </nav>
-            </div>
-            <small>ramblings from a guy writing code and other things</small>
-        </div>
-    </header>
     <main>
+        <header>
+            <h1 class="page-title">harrewijnen.net</h1>
+            <nav>
+                <a href="/">home</a>
+                <a href="/feed">rss</a>
+            </nav>
+        </header>
         <div class="container">
-            @RenderBody()
+                @RenderBody()
         </div>
     </main>
-    <footer class="footer">
-        &copy; @DateTime.Now.Year - harrewijnen.net
-    </footer>
 </body>
 </html>

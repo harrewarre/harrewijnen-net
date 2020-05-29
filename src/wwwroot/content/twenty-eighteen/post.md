@@ -21,7 +21,7 @@ Two major things this year. The first is a new hobby! I've started painting. One
 So far it's been great. It started with my desire to learn how to draw but not being able to find lessons or a group nearby I took painting instead and it has been great so far.
 You can find some of my stuff [right here on the site](/painting), or check out [twitter](https://twitter.com/harrewarre) where I post updates of things I'm working on every now and then.
 
-![My 'collection' :-)](/Content/twenty-eighteen/art.jpg)
+![My 'collection' :-)](/content/twenty-eighteen/art.jpg)
 
 The other big one is going through meta cognitive behavioral therapy to finally get a handle on my obsessive worrying and overthinking. It ranks up high on the good-things-done-for-myself list
 and its been an incredible improvement. In a nutshell, it has given me handles on all the negative thinking patterns (for lack of a better description) that occur and interfere(d)
