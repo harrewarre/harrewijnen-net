@@ -1,6 +1,6 @@
 # Openhack Amsterdam 2017
 
-![Openhack](/Content/openhack-ams-2017/openhack-banner.jpeg)
+![Openhack](/content/openhack-ams-2017/openhack-banner.jpeg)
 
 So this hackathon/training thing popped up on my twitter feed a week before it actually started.
 It caught my attention because it mentioned Azure Service Fabric as one of the tech stacks (the other being Kubernetes)
