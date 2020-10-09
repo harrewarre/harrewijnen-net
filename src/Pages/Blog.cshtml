@@ -17,10 +17,15 @@
 
             ViewData["Title"] = post.Metadata.Title;
 
-            <small>@post.Metadata.Created.ToString("dd-MM-yyyy")</small>
             <article>
                 @Html.Raw(post.HtmlContent)
             </article>
+            <p>
+                <small>
+                    <span>Posted on @post.Metadata.Created.ToString("dd-MM-yyyy")</span><br />
+                    <span>Tagged @string.Join(", ", post.Metadata.Tags)</span>
+                </small>
+            </p>
         }
     }
 </div>
