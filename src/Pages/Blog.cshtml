@@ -18,7 +18,7 @@
             ViewData["Title"] = post.Metadata.Title;
 
             <small>@post.Metadata.Created.ToString("dd-MM-yyyy")</small>
-            <article class="post-content">
+            <article>
                 @Html.Raw(post.HtmlContent)
             </article>
         }

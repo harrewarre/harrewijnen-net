@@ -5,20 +5,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - harrewijnen.net</title>
     <link rel="shortcut icon" href="~/favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" href="/static/styles.css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400" rel="stylesheet">
+    <link rel="stylesheet" href="https://classless.de/classless.css">
 </head>
 <body>
-    <main>
         <header>
-            <h1 class="page-title">harrewijnen.net</h1>
+            <h1>harrewijnen.net</h1>
             <nav>
-                <a href="/">home</a>
-                <a href="/feed">rss</a>
+                <ul>
+                    <li>
+                        <a href="/">home</a>
+                    </li>
+                    <li>
+                        <a href="/feed">rss</a>
+                    </li>
+                </ul>
             </nav>
         </header>
-        <div class="container">
+        <main>
                 @RenderBody()
-        </div>
-    </main>
+        </main>
+        <footer>
+            <small>© @DateTime.Now.Year harrewijnen.net</small>
+        </footer>
 </body>
 </html>

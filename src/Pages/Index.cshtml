@@ -5,7 +5,7 @@
     ViewData["Title"] = "Home";
     var index = await _resolver.GetMetadataIndex();
 
-    <ul class="post-list">
+    <ul>
         @foreach(var p in index) {
             <li>
                 <a href="/blog/@p.Slug">@p.Title</a>

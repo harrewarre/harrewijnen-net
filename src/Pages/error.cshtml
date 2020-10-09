@@ -6,12 +6,12 @@
     
     var code = Request.Query?.FirstOrDefault(q => q.Key == "code").Value ?? "500";
 
-    <div class="content-block">
+    <div>
         @{
             if(code == "404") {
-                <h1 class="title">@code - Content not found.</h1>
+                <h1>@code - Content not found.</h1>
             } else {
-                <h1 class="title">@code - Something strange happened 🤔</h1>
+                <h1>@code - Something strange happened 🤔</h1>
             }
         }
         <p>
