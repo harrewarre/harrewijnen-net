@@ -1,5 +1,4 @@
 ﻿@page
-@using System
 @using Blog.Code
 @inject IPostResolver _resolver;
 @{
@@ -7,10 +6,6 @@
     var index = await _resolver.GetMetadataIndex();
 
     @foreach(var p in index) {
-        <div class="card">
-            <a href="/blog/@p.Slug"><h4>@p.Title</h4></a>
-            <p>@p.Summary</p>
-            <small>@p.Created.ToString("yyyy-MM-dd") - @string.Join(", ", p.Tags)</small>
-        </div>
+        <partial name="_PostSummary" model="p"></partial>
     }
 }

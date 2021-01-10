@@ -1,6 +1,5 @@
 @page "{slug?}"
 @using Blog.Code
-@using System.Globalization
 @inject IPostResolver _postResolver;
 
 <div>
@@ -22,10 +21,14 @@
             </article>
             <p>
                 <small>
-                    <span>Posted on @post.Metadata.Created.ToString("dd-MM-yyyy")</span><br />
-                    <span>Tagged @string.Join(", ", post.Metadata.Tags)</span>
+                    <span>Posted on <partial name="_FormattedDate" model="post.Metadata.Created"></partial></span><br />
+                    <span>Tagged <partial name="_TagList" model="post.Metadata.Tags"></partial></span>
                 </small>
             </p>
+        }
+        else
+        {
+            <h1>No content here...</h1>
         }
     }
 </div>
