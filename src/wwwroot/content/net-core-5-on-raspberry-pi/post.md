@@ -14,7 +14,9 @@ You can find all the dotnet binaries [here](https://dotnet.microsoft.com/downloa
 
 Now that you have the file (name something like `dotnet-sdk-5.0.101-linux-arm.tar.gz`) you can extract it to some location you can easily find later. I've extract mine to `/usr/bin/dotnet`.
 
-`sudo tar zxf dotnet-sdk-5.0.101-linux-arm.tar.gz -C /usr/bin/dotnet` (versions might have changed by now)
+    `sudo tar zxf dotnet-sdk-5.0.101-linux-arm.tar.gz -C /usr/bin/dotnet`
+
+(versions might have changed by now)
 
 Now that the SDK is installed we can start using it but it's not part of the systems `PATH` yet so for ease of use can add it to the end of `.bashrc` so that the `dotnet` command is available everywhere.
 Open your `.bashrc` file in a text editor, add the following lines to the end of it and save it.
