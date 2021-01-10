@@ -10,8 +10,8 @@ Not really having a particular plan or goal, I ended up with a little robed char
     #walkman {
         display: block;
         margin: 0 auto;
-        width: 100%;
-        height: 50vh;
+        width: 95%;
+        height: 70vh;
     }
 </style>
 <iframe id="walkman" src="/content/fun-with-pico-8/walkman/walkman.html"></iframe>
