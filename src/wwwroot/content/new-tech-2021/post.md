@@ -22,6 +22,6 @@ After carefully looking at QVL lists to match the memory with the board and maki
 
 So there I was, everything all set, staring at a bright orange error LED on the motherboard when I powered it on... Luckily a friend was willing to take his 3700X CPU out of his PC and put it on my board so that we could flash an updated BIOS with the proper CPU support and everything was fine (after I had basically built the PC twice on the same day...)
 
-![PC](/content/new-tech-2021/new-tech-2021.jpeg)
+![PC](/content/new-tech-2021/new-tech-2021.jpg)
 
 This will give me enough horsepower for a good while again and it even comes with some fancy rainbow RGB 👨‍💻
