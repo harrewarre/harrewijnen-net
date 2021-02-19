@@ -11,3 +11,7 @@ html {
     color: darkgray;
     font-size: 14px;
 }
+
+article img {
+    max-width: 100%;
+}
