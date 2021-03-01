@@ -45,19 +45,19 @@ If you create a new console app, you will get an `App.config` by default. When y
 
 Here is the first hacky part. Unload the project and edit the `csproj` file manually. Look for an `ItemGroup` that looks like this:
 
-  <ItemGroup>
-    <None Include="App.config" />
-    <None Include="App.Release.config" />
-  </ItemGroup>
+    <ItemGroup>
+      <None Include="App.config" />
+      <None Include="App.Release.config" />
+    </ItemGroup>
 
 And change it to this:
 
-  <ItemGroup>
-    <None Include="App.config" />
-    <None Include="App.Release.config">
-      <DependentUpon>App.config</DependentUpon>
-    </None>
-  </ItemGroup>
+	<ItemGroup>
+		<None Include="App.config" />
+		<None Include="App.Release.config">
+			<DependentUpon>App.config</DependentUpon>
+		</None>
+	</ItemGroup>
 
 Save and close the file and reload the project. It should now look like this:
 
