@@ -2,14 +2,16 @@
 @using Blog.Code
 @inject IPostResolver _postResolver;
 
-<div>
+<main>
     @{
         var slug = RouteData.Values["slug"] as string;
 
-        if(!string.IsNullOrWhiteSpace(slug)) {
+        if (!string.IsNullOrWhiteSpace(slug))
+        {
             var post = await _postResolver.GetPost(slug);
 
-            if(post == null) {
+            if (post == null)
+            {
                 Response.Redirect("/404");
                 return;
             }
@@ -31,4 +33,4 @@
             <h1>No content here...</h1>
         }
     }
-</div>
+</main>

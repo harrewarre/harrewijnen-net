@@ -1,8 +1,10 @@
 @using Blog.Code.Models
 @model PostMetadata
 <article class="post-summary">
-    <a href="/blog/@Model.Slug"><h1>@Model.Title</h1></a>
-    <partial name="_FormattedDate" model="@Model.Created"></partial>
+    <a href="/blog/@Model.Slug">
+        <h1>@Model.Title</h1>
+    </a>
     <p>@Model.Summary</p>
+    <partial name="_FormattedDate" model="@Model.Created"></partial>
     <partial name="_TagList" model="@Model.Tags"></partial>
 </article>
