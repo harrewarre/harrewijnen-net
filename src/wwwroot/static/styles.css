@@ -1,34 +1,61 @@
-:root {
-    --primary-color: #333;
-    --background-color: #ddd;
-    --link-color: #0c0050;
+/* little header gimmick :) */
+.game-of-life {
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin: 0 -10px;
+    z-index: 0;
 }
 
-@media (prefers-color-scheme: dark) {
-    :root {
-        --primary-color: #eee;
-        --background-color: #333;
-        --link-color: #8ca500;
-    }
+.blog-header {
+    position: relative;
+    margin-bottom: 225px;
 }
 
-html,
-body {
-    font-family: 'Open Sans';
-    color: var(--primary-color);
-    background-color: var(--background-color);
+/* Actual stuff */
+
+body,
+html {
+    padding: 0;
+    margin: 0;
+    background-color: #111;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+a {
+    color: wheat;
+}
+
+.blog {
+    background-color: #333;
+    padding: 10px;
+    color: #ddd;
+    overflow: hidden;
+    position: relative;
+}
+
+header {
+    position: absolute;
+    z-index: 1;
+    top: 115px;
+}
+
+header h1,
+header nav {
+    border-radius: 5px;
+    padding: 5px 10px;
+    background-color: rgba(0,0,0,.30);
 }
 
 header h1 {
     font-size: 1.2rem;
     margin-top: 0;
-}
-nav {
-    margin-bottom: 3rem;
+    z-index: 1;
+    display: inline-block;
 }
 
-a {
-    color:var(--link-color);
+header nav {
+    margin-bottom: 3rem;
 }
 
 article img {
@@ -57,26 +84,18 @@ article.post-summary .tags {
 pre {
     overflow: auto;
     padding: 5px;
-    border: 1px solid var(--primary-color);
     border-radius: 5px;
     background-color: #555;
-    color: rgb(112, 190, 122);
 }
 
 code {
     font-size: 1rem;
 }
 
-@media (min-width: 600px) {
+@media (min-width: 800px) {
     body {
-        max-width: 600px;
+        max-width: 800px;
         margin: 0 auto;
-        border-left: 1px dashed var(--primary-color);
-        border-right: 1px dashed var(--primary-color);
-        padding: 0 1rem;
-    }
-
-    article img {
-        width: 100%;
+        padding: 0;
     }
 }
