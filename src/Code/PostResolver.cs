@@ -51,10 +51,27 @@ namespace Blog.Code
             try
             {
                 var postPath = Path.Join(_contentRoot, $"{slug}{_postExtenion}");
-                return LoadPost(postPath);
+                var postData = File.ReadAllText(postPath);
+
+                var splitter = _contentSplitter;
+
+                var splitIndex = postData.IndexOf(splitter);
+                var mdIndex = splitIndex + _contentSplitter.Length;
+
+                var frontMatter = postData.Substring(0, splitIndex);
+                var markdown = postData.Substring(mdIndex);
+
+                var metadata = JsonSerializer.Deserialize<PostMetadata>(frontMatter);
+                metadata.Slug = Path.GetFileNameWithoutExtension(postPath);
+
+                var post = new Post(metadata);
+                post.HtmlContent = Markdown.ToHtml(markdown.Trim(), _markdownPipeline);
+
+                return post;
             }
-            catch
+            catch (Exception ex)
             {
+                Console.Error.WriteLine($"Failed to load post: {slug} !! {ex.Message} | {ex.StackTrace}");
                 return null;
             }
         }
@@ -85,27 +102,6 @@ namespace Blog.Code
 
                 return metadata;
             }
-        }
-
-        private Post LoadPost(string postPath)
-        {
-            var postData = File.ReadAllText(postPath);
-
-            var splitter = _contentSplitter;
-
-            var splitIndex = postData.IndexOf(splitter);
-            var mdIndex = splitIndex + _contentSplitter.Length;
-
-            var frontMatter = postData.Substring(0, splitIndex);
-            var markdown = postData.Substring(mdIndex);
-
-            var metadata = JsonSerializer.Deserialize<PostMetadata>(frontMatter);
-            metadata.Slug = Path.GetFileNameWithoutExtension(postPath);
-
-            var post = new Post(metadata);
-            post.HtmlContent = Markdown.ToHtml(markdown.Trim(), _markdownPipeline);
-
-            return post;
         }
     }
 }
