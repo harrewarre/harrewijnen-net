@@ -19,7 +19,7 @@ namespace Blog.Code
     {
         private readonly string _contentSplitter = "---";
         private readonly MarkdownPipeline _markdownPipeline;
-        private readonly string _postExtentionSearchPattern = "*.md";
+        private readonly string _postSearchPattern = "*.md";
         private readonly string _postExtenion = ".md";
         private readonly string _contentDirectoryName = "content";
         private readonly JsonSerializerOptions _metaSerializeOptions = new JsonSerializerOptions
@@ -40,7 +40,7 @@ namespace Blog.Code
 
         public IEnumerable<PostMetadata> GetMetadataIndex()
         {
-            var posts = Directory.GetFiles(_contentRoot, _postExtentionSearchPattern);
+            var posts = Directory.GetFiles(_contentRoot, _postSearchPattern);
             var index = posts.Select(p => LoadMetadata(p));
 
             return index.OrderByDescending(p => p.Created);
