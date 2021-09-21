@@ -17,6 +17,11 @@ namespace Blog.Code
 
     public class PostResolver : IPostResolver
     {
+        private readonly string _contentSplitter = "---";
+        private readonly MarkdownPipeline _markdownPipeline;
+        private readonly string _postExtentionSearchPattern = "*.md";
+        private readonly string _postExtenion = ".md";
+        private readonly string _contentDirectoryName = "content";
         private readonly JsonSerializerOptions _metaSerializeOptions = new JsonSerializerOptions
         {
             PropertyNamingPolicy = JsonNamingPolicy.CamelCase
@@ -26,12 +31,16 @@ namespace Blog.Code
 
         public PostResolver(string webRootPath)
         {
-            _contentRoot = Path.Join(webRootPath, "content");
+            _contentRoot = Path.Join(webRootPath, _contentDirectoryName);
+
+            _markdownPipeline = new MarkdownPipelineBuilder()
+                .UseAdvancedExtensions()
+                .Build();
         }
 
         public IEnumerable<PostMetadata> GetMetadataIndex()
         {
-            var posts = Directory.GetFiles(_contentRoot, "*.md");
+            var posts = Directory.GetFiles(_contentRoot, _postExtentionSearchPattern);
             var index = posts.Select(p => LoadMetadata(p));
 
             return index.OrderByDescending(p => p.Created);
@@ -41,7 +50,7 @@ namespace Blog.Code
         {
             try
             {
-                var postPath = Path.Join(_contentRoot, $"{slug}.md");
+                var postPath = Path.Join(_contentRoot, $"{slug}{_postExtenion}");
                 return LoadPost(postPath);
             }
             catch
@@ -59,7 +68,7 @@ namespace Blog.Code
                 string line = string.Empty;
                 while ((line = sr.ReadLine()) != null)
                 {
-                    if (line == "---")
+                    if (line == _contentSplitter)
                     {
                         break;
                     }
@@ -80,16 +89,12 @@ namespace Blog.Code
 
         private Post LoadPost(string postPath)
         {
-            var pipeline = new MarkdownPipelineBuilder()
-                .UseAdvancedExtensions()
-                .Build();
-
             var postData = File.ReadAllText(postPath);
 
-            var splitter = "---";
+            var splitter = _contentSplitter;
 
             var splitIndex = postData.IndexOf(splitter);
-            var mdIndex = splitIndex + 3;
+            var mdIndex = splitIndex + _contentSplitter.Length;
 
             var frontMatter = postData.Substring(0, splitIndex);
             var markdown = postData.Substring(mdIndex);
@@ -98,7 +103,7 @@ namespace Blog.Code
             metadata.Slug = Path.GetFileNameWithoutExtension(postPath);
 
             var post = new Post(metadata);
-            post.HtmlContent = Markdown.ToHtml(markdown.Trim(), pipeline);
+            post.HtmlContent = Markdown.ToHtml(markdown.Trim(), _markdownPipeline);
 
             return post;
         }
