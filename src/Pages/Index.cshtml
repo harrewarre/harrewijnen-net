@@ -3,7 +3,7 @@
 @inject IPostResolver _resolver;
 @{
     ViewData["Title"] = "Home";
-    var index = await _resolver.GetMetadataIndex();
+    var index = _resolver.GetMetadataIndex();
 
     @foreach(var p in index) {
         <partial name="_PostSummary" model="p"></partial>

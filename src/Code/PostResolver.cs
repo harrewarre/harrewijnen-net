@@ -2,23 +2,21 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text.Json;
-using System.Threading.Tasks;
 using Markdig;
 using Blog.Code.Models;
+using System.Text;
+using System;
 
 namespace Blog.Code
 {
     public interface IPostResolver
     {
-        Task<IEnumerable<PostMetadata>> GetMetadataIndex();
-        Task<Post> GetPost(string slug);
+        IEnumerable<PostMetadata> GetMetadataIndex();
+        Post GetPost(string slug);
     }
 
     public class PostResolver : IPostResolver
     {
-        private readonly string _metadataFileName = "meta.json";
-        private readonly string _contentFilename = "post.md";
-
         private readonly JsonSerializerOptions _metaSerializeOptions = new JsonSerializerOptions
         {
             PropertyNamingPolicy = JsonNamingPolicy.CamelCase
@@ -31,27 +29,20 @@ namespace Blog.Code
             _contentRoot = Path.Join(webRootPath, "content");
         }
 
-        public async Task<IEnumerable<PostMetadata>> GetMetadataIndex()
+        public IEnumerable<PostMetadata> GetMetadataIndex()
         {
-            var paths = Directory.GetDirectories(_contentRoot);
-            var index = await Task.WhenAll(paths.Select(p => LoadMetadata(p)));
+            var posts = Directory.GetFiles(_contentRoot, "*.md");
+            var index = posts.Select(p => LoadMetadata(p));
 
             return index.OrderByDescending(p => p.Created);
         }
 
-        public async Task<Post> GetPost(string slug)
+        public Post GetPost(string slug)
         {
             try
             {
-                var contentPath = Path.Join(_contentRoot, slug);
-
-                var meta = await LoadMetadata(contentPath);
-                var content = await LoadContent(contentPath);
-
-                var post = new Post(meta);
-                post.HtmlContent = content;
-
-                return post;
+                var postPath = Path.Join(_contentRoot, $"{slug}.md");
+                return LoadPost(postPath);
             }
             catch
             {
@@ -59,28 +50,57 @@ namespace Blog.Code
             }
         }
 
-        private async Task<PostMetadata> LoadMetadata(string path)
+        private PostMetadata LoadMetadata(string postPath)
         {
-            var metaPath = Path.Join(path, _metadataFileName);
-            using (FileStream fs = File.OpenRead(metaPath))
+            using (var sr = new StreamReader(postPath))
             {
-                var metadata = await JsonSerializer.DeserializeAsync<PostMetadata>(fs, _metaSerializeOptions);
-                metadata.Slug = new DirectoryInfo(path).Name;
+                var builder = new StringBuilder();
+
+                string line = string.Empty;
+                while ((line = sr.ReadLine()) != null)
+                {
+                    if (line == "---")
+                    {
+                        break;
+                    }
+
+                    builder.Append(line);
+                }
+
+                var content = builder.ToString();
+
+                Console.WriteLine(content);
+
+                var metadata = JsonSerializer.Deserialize<PostMetadata>(content);
+                metadata.Slug = Path.GetFileNameWithoutExtension(postPath);
 
                 return metadata;
             }
         }
 
-        private async Task<string> LoadContent(string path)
+        private Post LoadPost(string postPath)
         {
-            var contentPath = Path.Join(path, _contentFilename);
-
             var pipeline = new MarkdownPipelineBuilder()
                 .UseAdvancedExtensions()
                 .Build();
 
-            var markdown = await File.ReadAllTextAsync(contentPath);
-            return Markdown.ToHtml(markdown, pipeline);
+            var postData = File.ReadAllText(postPath);
+
+            var splitter = "---";
+
+            var splitIndex = postData.IndexOf(splitter);
+            var mdIndex = splitIndex + 3;
+
+            var frontMatter = postData.Substring(0, splitIndex);
+            var markdown = postData.Substring(mdIndex);
+
+            var metadata = JsonSerializer.Deserialize<PostMetadata>(frontMatter);
+            metadata.Slug = Path.GetFileNameWithoutExtension(postPath);
+
+            var post = new Post(metadata);
+            post.HtmlContent = Markdown.ToHtml(markdown.Trim(), pipeline);
+
+            return post;
         }
     }
 }

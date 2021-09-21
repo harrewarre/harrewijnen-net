@@ -8,7 +8,7 @@
 
         if (!string.IsNullOrWhiteSpace(slug))
         {
-            var post = await _postResolver.GetPost(slug);
+            var post = _postResolver.GetPost(slug);
 
             if (post == null)
             {
