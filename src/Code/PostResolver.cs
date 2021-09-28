@@ -95,8 +95,6 @@ namespace Blog.Code
 
                 var content = builder.ToString();
 
-                Console.WriteLine(content);
-
                 var metadata = JsonSerializer.Deserialize<PostMetadata>(content);
                 metadata.Slug = Path.GetFileNameWithoutExtension(postPath);
 
