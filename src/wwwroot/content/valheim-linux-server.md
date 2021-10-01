@@ -104,6 +104,6 @@ This should give you enough insight to troubleshoot what's going wrong.
 
 ## Wrapping up
 
-At this point you should be able to use the public IP of your server to starting playing! I don't know much about the resources required to keep everthing running smoothly but I've been running a server on a fairly modest 2-core/8GB RAM Linux (`Standard D2as_v4` on Azure) VM that can easily host a 4 player game.
+At this point you should be able to use the public IP of your server to start playing! I don't know much about the resources required to keep everthing running smoothly but I've been running a server on a fairly modest 2-core/8GB RAM Linux (`Standard D2as_v4` on Azure) VM that can easily host a 4 player game.
 
 Now go forth and play the viking game with your friends on your very own Valheim server!
