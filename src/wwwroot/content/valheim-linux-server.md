@@ -28,7 +28,7 @@ Now that SteamCMD is available, we can use it to download the gamefiles to the s
 
 Some things to note here:
 
- - I've forced the install directory to something without spaces or other special crap in the name. We'll come to that in a bit.
+ - I've forced the install directory to something without spaces or other special crap in the name. This will make setting up systemd easier later.
  - 896660 is the steam identifier for Valheim.
  - You can re-use this command later when you need to update the gamefiles when the devs release an update.
 
@@ -57,11 +57,11 @@ Update the value for the `-name` argument to something you nice and of course se
 
 ## Port configuration
 
-This step will depend on your network infrastructure, I'm running my server on the Azure cloud platform which has its own way of configuring ports for VMs. You setup is probably different but the gist of all of it is that you need op open the port range **`2456-2458`** for incoming traffic.
+This step will depend on your network infrastructure, I'm running my server on the Azure cloud platform which has its own way of configuring ports for VMs. Your setup is probably different but the gist of all of it is that you need op open the port range **`2456-2458`** for incoming traffic.
 
 ## Running the server
 
-It's tempting now to just run the `start_valheim.sh` file and starting gaming but that comes with a drawback. When you close your SSH session, your server will stop. To fix that we'll use systemd to run the gameserver for us (and even try to restart it should it for some reason crash or shut down).
+It's tempting now to just run the `start_valheim.sh` file and start gaming but that comes with a drawback. When you close your SSH session, your server will stop. To fix that we'll use systemd to run the gameserver for us (and even try to restart it should it for some reason crash or shut down).
 
 Here is the config file I'm using:
 
@@ -88,7 +88,7 @@ Given the systemd config file above, we can now hand this over to systemd to han
  1. Copy the file to `/etc/systemd/system`.
  2. Activate the service so that systemd can start the service: `sudo systemctl enable valheim` (don't include the `.service` part here).
  3. Start the service: `sudo systemctl start valheim`.
- 4. Check if the server status and see if it's actually running: `sudo systemctl status valheim`.
+ 4. Check the server status and see if it's actually running: `sudo systemctl status valheim`.
 
 If everything was set up correctly, the output of step 4 will show a line that looks something like this (truncated for brevity):
 
@@ -96,7 +96,7 @@ If everything was set up correctly, the output of step 4 will show a line that l
         Loaded: loaded (/etc/systemd/system/valheim.service; enabled; vendor preset: enabled)
         Active: active (running)
 
-Should the server not start, you can check its logs using [journalctl](https://www.commandlinux.com/man-page/man1/journalctl.1.html). To get the last 20 lines, run the following:
+Should the server fail to start, use [journalctl](https://www.commandlinux.com/man-page/man1/journalctl.1.html) to have a look a the logs. To get the last 20 lines for the valheim server, run the following:
 
     journalctl -u valheim -n 20
 
@@ -104,4 +104,6 @@ This should give you enough insight to troubleshoot what's going wrong.
 
 ## Wrapping up
 
-At this point you should be able to use the public IP of the server to starting playing! I don't know much about the resources required to keep everthing running smoothly but I've been running a server on a fairly modest 2-core/8GB Ram Linux (Standard D2as_v4 on Azure) VM that can easily host a 4 player game. Have fun!
+At this point you should be able to use the public IP of your server to starting playing! I don't know much about the resources required to keep everthing running smoothly but I've been running a server on a fairly modest 2-core/8GB RAM Linux (`Standard D2as_v4` on Azure) VM that can easily host a 4 player game.
+
+Now go forth and play the viking game with your friends on your very own Valheim server!
