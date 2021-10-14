@@ -1,5 +1,5 @@
 # Harrewijnen.net
 
-A new and improved version of my blog.
+My blog.
 
-Just need to migrate all the content 🙃
+A dotnet core asp.net razor pages app that renders markdown files.
