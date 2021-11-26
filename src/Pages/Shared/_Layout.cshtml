@@ -20,23 +20,20 @@
 
 <body>
     <div class="blog">
-        <div class="blog-header">
-            <canvas id="simSurface" class="game-of-life" width="800" height="200"></canvas>
-            <header>
-                <h1>harrewijnen.net</h1>
-                <nav>
-                    <a href="/">home</a> | <a href="https://twitter.com/harrewarre">twitter</a> | <a
-                        href="https://github.com/harrewarre">github</a> | <a href="/feed">rss</a>
-                </nav>
-            </header>
-        </div>
+        <header>
+            <h1>harrewijnen.net</h1>
+            <nav>
+                <a href="/">home</a> | 
+                <a href="https://twitter.com/harrewarre">twitter</a> | 
+                <a href="https://github.com/harrewarre">github</a> | 
+                <a href="/feed">rss</a>
+            </nav>
+        </header>
         @RenderBody()
         <footer>
             <small>© @DateTime.Now.Year harrewijnen.net</small>
         </footer>
     </div>
-
-    <script src="/static/lifesim/sim.js"></script>
 </body>
 
 </html>
