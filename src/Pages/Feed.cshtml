@@ -5,7 +5,7 @@
 @{
     Layout = null; 
 
-    var index = _postResolver.GetMetadataIndex();
+    var index = _postResolver.GetMetadataIndex().Take(10);
     Response.ContentType = "application/rss+xml";
 }
 <?xml version="1.0" encoding="UTF-8" ?>
@@ -18,13 +18,14 @@
         <language>en-us</language>
         <generator>Harre's custom RSS feed generator v1</generator>
         <description>Ramblings from a guy writing code and other things</description>
-        @foreach (var i in index.Take(20))
+        @foreach (var i in index)
         {
+            var p = _postResolver.GetPost(i.Slug);
             <item>
                 <guid isPermaLink="true">https://www.harrewijnen.net/blog/@i.Slug</guid>
                 <title>@i.Title</title>
                 @Html.Raw($"<link>https://www.harrewijnen.net/blog/{i.Slug}</link>")
-                <description>@i.Summary</description>
+                <description>@p.HtmlContent</description>
                 @foreach (var t in i.Tags)
                 {
                 <category>@t</category>
