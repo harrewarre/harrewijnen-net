@@ -7,6 +7,8 @@
 
     var index = _postResolver.GetMetadataIndex().Take(10);
     Response.ContentType = "application/rss+xml";
+
+    var host = $"{Request.Scheme}://{Request.Host.Value}";
 }
 <?xml version="1.0" encoding="UTF-8" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
@@ -21,11 +23,12 @@
         @foreach (var i in index)
         {
             var p = _postResolver.GetPost(i.Slug);
+            var contentWithDeeplinks = p.HtmlContent.Replace("src=\"/content/", $"src=\"{host}/content/");
             <item>
                 <guid isPermaLink="true">https://www.harrewijnen.net/blog/@i.Slug</guid>
                 <title>@i.Title</title>
                 @Html.Raw($"<link>https://www.harrewijnen.net/blog/{i.Slug}</link>")
-                <description>@p.HtmlContent</description>
+                <description>@contentWithDeeplinks</description>
                 @foreach (var t in i.Tags)
                 {
                 <category>@t</category>
