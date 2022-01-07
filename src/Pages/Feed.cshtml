@@ -2,13 +2,15 @@
 @using Blog.Code
 @using System.Linq
 @inject IPostResolver _postResolver
+@inject ITracker _tracker;
+
 @{
     Layout = null; 
 
     var index = _postResolver.GetMetadataIndex().Take(10);
     Response.ContentType = "application/rss+xml";
 
-    var host = $"{Request.Scheme}://{Request.Host.Value}";
+    var host = $"{Request.Scheme}://{Request.Host.Value}";   
 }
 <?xml version="1.0" encoding="UTF-8" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
@@ -37,3 +39,7 @@
         }
     </channel>
 </rss> 
+
+@{
+    _tracker.TrackFeedAccessed();
+}
