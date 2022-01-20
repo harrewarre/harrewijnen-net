@@ -2,7 +2,6 @@
 @using Blog.Code
 @using System.Linq
 @inject IPostResolver _postResolver
-@inject ITracker _tracker;
 
 @{
     Layout = null; 
@@ -38,8 +37,4 @@
             </item>
         }
     </channel>
-</rss> 
-
-@{
-    _tracker.TrackFeedAccessed();
-}
+</rss>

@@ -1,7 +1,6 @@
 @page "{slug?}"
 @using Blog.Code
 @inject IPostResolver _postResolver;
-@inject ITracker _tracker;
 <main>
     @{
         var slug = RouteData.Values["slug"] as string;
@@ -12,7 +11,6 @@
 
             if (post == null)
             {
-                _tracker.TrackPostNotFound(slug);
                 Response.Redirect("/404");
                 return;
             }
@@ -29,11 +27,9 @@
                 </small>
             </p>
 
-            _tracker.TrackPostFound(slug);
         }
         else
         {
-            _tracker.TrackEmptyBlogAccessed();
             <h1>No content here...</h1>
         }
     }
