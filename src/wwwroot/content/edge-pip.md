@@ -11,6 +11,12 @@
 ---
 # Microsoft Edge Picture-in-Picture
 
+---
+
+**Small update**: Edge now supports picture-in-picture with a little button out of the box! So you no longer need the code snippet.
+
+---
+
 Here's a quick little helper to pop out videoplayers in Microsoft Edge.
 
 ## requestPictureInPicture

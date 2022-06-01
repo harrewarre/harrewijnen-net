@@ -7,8 +7,8 @@ body,
 html {
     padding: 0;
     margin: 0;
-    background-color: #111;
-    font-family: 'Courier New', Courier, monospace;
+    background-color: rgb(8, 19, 34);
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 a {
@@ -16,20 +16,14 @@ a {
 }
 
 .blog {
-    background-color: #333;
     padding: 10px;
     color: #ddd;
     overflow: hidden;
     position: relative;
 }
 
-header h1,
-header nav {
-    text-align: center;
-}
-
 header {
-    margin-bottom: 2rem;
+    margin-bottom: 5rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
