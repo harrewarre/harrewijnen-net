@@ -1,4 +1,4 @@
-{ "title": "Paved road - Deployments", "summary": "Reduce waste and improve developer experience with pipelines-as-a-service.", "tags": [ "devops", "developer experience" ], "created": "2022-07-18" }
+{ "slug":"paved-load-deployment", "title": "Paved road - Deployments", "summary": "Reduce waste and improve developer experience with pipelines-as-a-service.", "tags": [ "devops", "developer experience" ], "created": "2022-07-18" }
 
 Speeding up developer teams by eliminating waste and busywork can come in many forms. A huge step comes through automation, deployment specifically. Getting your app to production in an automated manner through some sort of pipeline is a huge timesaver. 
 
