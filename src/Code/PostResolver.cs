@@ -78,6 +78,8 @@ namespace Blog.Code
 
         private PostMetadata LoadMetadata(string postPath)
         {
+            Console.WriteLine($"--- Loading metadata for {postPath}");
+            
             using (var sr = new StreamReader(postPath))
             {
                 var builder = new StringBuilder();
