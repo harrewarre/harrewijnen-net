@@ -3,30 +3,56 @@
     box-sizing: border-box;
 }
 
+:root {
+    --accent: #FF0033;
+    --text-color: #111;
+    --background: #BBB;
+}
+
 body,
 html {
     padding: 0;
     margin: 0;
-    background-color: rgb(8, 19, 34);
+    color: var(--text-color);
+    background-color: var(--background);
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 a {
-    color: wheat;
+    color: var(--text-color);
+    text-decoration-color: var(--accent);
 }
 
 .blog {
     padding: 10px;
-    color: #ddd;
     overflow: hidden;
     position: relative;
 }
 
 header {
-    margin-bottom: 5rem;
+    margin-bottom: 3rem;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
+}
+
+.logo {
+    width: 24px;
+    height: 24px;
+    margin-top: 6px;
+}
+
+img.post-icon {
+    display: inline;
+    width: 18px;
+    height: 18px;
+    margin: 5px 8px 0 0;
+}
+
+header h1 {
+    margin: 0;
+}
+
+header nav {
+    margin-left: 2px;
 }
 
 article img {
@@ -35,13 +61,25 @@ article img {
     margin: 0 auto;
 }
 
+article.post h1::before {
+    content: "";
+    display: inline-block;
+    position: relative;
+    margin-right: 8px;
+    background-image: url(box.svg);
+    width: 18px;
+    height: 18px;
+}
+
 article.post-summary {
     margin-bottom: 2rem;
+    display: flex;
 }
 
 article.post-summary h1 {
     margin: 0;
 }
+
 article.post-summary p {
     margin: .5rem 0;
 }
@@ -55,8 +93,11 @@ article.post-summary .tags {
 pre {
     overflow: auto;
     padding: 5px;
-    border-radius: 5px;
-    background-color: #555;
+    background-color: #DDD;
+    border-top: 1px solid var(--accent);
+    border-left: 1px solid var(--accent);
+    border-right: 1px solid var(--text-color);
+    border-bottom: 1px solid var(--text-color);
 }
 
 code {
