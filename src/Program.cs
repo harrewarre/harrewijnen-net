@@ -6,6 +6,8 @@ using Blog.Code;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddApplicationInsightsTelemetry();
+
 builder.Services.AddSingleton<IPostResolver>(provider =>
 {
     var hostingEnvironment = provider.GetService<IWebHostEnvironment>();
