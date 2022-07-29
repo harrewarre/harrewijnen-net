@@ -28,14 +28,17 @@ namespace Blog.Code
         };
 
         private readonly string _contentRoot;
+        private readonly IEventLogger _eventLogger;
 
-        public PostResolver(string webRootPath)
+        public PostResolver(string webRootPath, IEventLogger eventLogger)
         {
             _contentRoot = Path.Join(webRootPath, _contentDirectoryName);
 
             _markdownPipeline = new MarkdownPipelineBuilder()
                 .UseAdvancedExtensions()
                 .Build();
+            
+            _eventLogger = eventLogger;
         }
 
         public IEnumerable<PostMetadata> GetMetadataIndex()
@@ -67,11 +70,15 @@ namespace Blog.Code
                 var post = new Post(metadata);
                 post.HtmlContent = Markdown.ToHtml(markdown.Trim(), _markdownPipeline);
 
+                _eventLogger.LogPageview(slug);
+                Console.WriteLine($"Loaded data for page: {slug}");
+
                 return post;
             }
             catch (Exception ex)
             {
                 Console.Error.WriteLine($"Failed to load post: {slug} !! {ex.Message} | {ex.StackTrace}");
+                _eventLogger.LogPageMiss(slug);
                 return null;
             }
         }

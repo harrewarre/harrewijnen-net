@@ -7,12 +7,14 @@ using Blog.Code;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddApplicationInsightsTelemetry();
+builder.Services.AddSingleton<IEventLogger, EventLogger>();
 
 builder.Services.AddSingleton<IPostResolver>(provider =>
 {
     var hostingEnvironment = provider.GetService<IWebHostEnvironment>();
-    return new PostResolver(hostingEnvironment.WebRootPath);
+    return new PostResolver(hostingEnvironment.WebRootPath, provider.GetService<IEventLogger>());
 });
+
 
 builder.Services.Configure<RouteOptions>(options =>
 {
