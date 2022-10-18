@@ -1,17 +1,17 @@
 { 
-    "title": "It all starts with smaller stories", 
-    "slug": "start-with-small-stories" 
-    "summary": "Improve your development process by breaking down work into smaller pieces.", 
-    "tags": [ 
-        "agility", 
-        "developer experience", 
-        "devex", 
-        "developer practices" 
-    ], 
-    "created": "2022-10-18" 
-} 
+    "title": "It all starts with smaller stories",
+    "slug": "start-with-small-stories",
+    "summary": "Improve your development process by breaking down work into smaller pieces.",
+    "tags": [
+        "agility",
+        "developer experience",
+        "devex",
+        "developer practices"
+    ],
+    "created": "2022-10-18"
+}
 
---- 
+---
 
 # It all starts with smaller stories 
 
@@ -47,4 +47,4 @@ Something these small stories also provide is agility. Technically you should be
 
 So we've made estimating work easier and more accurate. Flow of work is increased because we can release more often in smaller chunks. We've also made it possible to respond to changing requirements faster because we can validate more often. The thing we need to watch out for is crossing streams of work, which is easily address with clear communication and a little up front planning. 
 
-If there is one thing you should try if you want to increase your dev teams agility, it is writing smaller stories. It does take some practice, and will require some change in the way you work. To get even more juice from smaller stories, combine it with pair-programming and trunk-based development but that's going to take some additional technical maturity and we've also kind of glossed over testing practices. 
+If there is one thing you should try if you want to increase your dev teams agility, it is writing smaller stories. It does take some practice, and will require some change in the way you work. To get even more juice from smaller stories, combine it with pair-programming and trunk-based development but that's going to take some additional technical maturity and we've also kind of glossed over testing practices.
