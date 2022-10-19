@@ -7,7 +7,6 @@
   <ItemGroup>
     <PackageReference Include="Markdig" Version="0.26.0" />
     <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" version="2.16.0" />
-    <PackageReference Include="prometheus-net.AspNetCore" Version="6.0.0" />
   </ItemGroup>
 
   <ItemGroup>

@@ -6,7 +6,6 @@ using Markdig;
 using Blog.Code.Models;
 using System.Text;
 using System;
-using Prometheus;
 
 namespace Blog.Code
 {
@@ -27,9 +26,6 @@ namespace Blog.Code
         {
             PropertyNamingPolicy = JsonNamingPolicy.CamelCase
         };
-
-        private static readonly Counter PostViewCount = Metrics.CreateCounter("blogpost_views_total", "Number of blogposts loaded.", labelNames: new [] { "slug" });
-        private static readonly Histogram PostLoadDuration = Metrics.CreateHistogram("blogpost_load_duration_ms", "Time taken to load a post in milliseconds.");
 
         private readonly string _contentRoot;
 
@@ -54,31 +50,26 @@ namespace Blog.Code
         {
             try
             {
-                using(PostLoadDuration.NewTimer()) 
-                {
-                    var postPath = Path.Join(_contentRoot, $"{slug}{_postExtenion}");
-                    var postData = File.ReadAllText(postPath);
+                var postPath = Path.Join(_contentRoot, $"{slug}{_postExtenion}");
+                var postData = File.ReadAllText(postPath);
 
-                    var splitter = _contentSplitter;
+                var splitter = _contentSplitter;
 
-                    var splitIndex = postData.IndexOf(splitter);
-                    var mdIndex = splitIndex + _contentSplitter.Length;
+                var splitIndex = postData.IndexOf(splitter);
+                var mdIndex = splitIndex + _contentSplitter.Length;
 
-                    var frontMatter = postData.Substring(0, splitIndex);
-                    var markdown = postData.Substring(mdIndex);
+                var frontMatter = postData.Substring(0, splitIndex);
+                var markdown = postData.Substring(mdIndex);
 
-                    var metadata = JsonSerializer.Deserialize<PostMetadata>(frontMatter);
-                    metadata.Slug = Path.GetFileNameWithoutExtension(postPath);
+                var metadata = JsonSerializer.Deserialize<PostMetadata>(frontMatter);
+                metadata.Slug = Path.GetFileNameWithoutExtension(postPath);
 
-                    var post = new Post(metadata);
-                    post.HtmlContent = Markdown.ToHtml(markdown.Trim(), _markdownPipeline);
+                var post = new Post(metadata);
+                post.HtmlContent = Markdown.ToHtml(markdown.Trim(), _markdownPipeline);
 
-                    Console.WriteLine($"Loaded data for page: {slug}");
+                Console.WriteLine($"Loaded data for page: {slug}");
 
-                    PostViewCount.WithLabels(slug).Inc();
-
-                    return post;
-                }
+                return post;
             }
             catch (Exception ex)
             {
@@ -90,7 +81,7 @@ namespace Blog.Code
         private PostMetadata LoadMetadata(string postPath)
         {
             Console.WriteLine($"--- Loading metadata for {postPath}");
-            
+
             using (var sr = new StreamReader(postPath))
             {
                 var builder = new StringBuilder();

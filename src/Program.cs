@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Routing;
 using Microsoft.Extensions.DependencyInjection;
 using Blog.Code;
-using Prometheus;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -24,14 +23,12 @@ var app = builder.Build();
 
 app.UseStaticFiles();
 app.UseRouting();
-app.UseHttpMetrics();
 
 app.UseStatusCodePagesWithRedirects("/error?code={0}");
 
 app.UseEndpoints(endpoints =>
 {
     endpoints.MapRazorPages();
-    endpoints.MapMetrics();
 });
 
 app.Run();
