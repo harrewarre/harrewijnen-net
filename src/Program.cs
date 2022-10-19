@@ -3,18 +3,15 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Routing;
 using Microsoft.Extensions.DependencyInjection;
 using Blog.Code;
+using Prometheus;
 
 var builder = WebApplication.CreateBuilder(args);
-
-builder.Services.AddApplicationInsightsTelemetry();
-builder.Services.AddSingleton<IEventLogger, EventLogger>();
 
 builder.Services.AddSingleton<IPostResolver>(provider =>
 {
     var hostingEnvironment = provider.GetService<IWebHostEnvironment>();
-    return new PostResolver(hostingEnvironment.WebRootPath, provider.GetService<IEventLogger>());
+    return new PostResolver(hostingEnvironment.WebRootPath);
 });
-
 
 builder.Services.Configure<RouteOptions>(options =>
 {
@@ -27,12 +24,14 @@ var app = builder.Build();
 
 app.UseStaticFiles();
 app.UseRouting();
+app.UseHttpMetrics();
 
 app.UseStatusCodePagesWithRedirects("/error?code={0}");
 
 app.UseEndpoints(endpoints =>
 {
     endpoints.MapRazorPages();
+    endpoints.MapMetrics();
 });
 
 app.Run();

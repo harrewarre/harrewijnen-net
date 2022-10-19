@@ -6,6 +6,7 @@ using Markdig;
 using Blog.Code.Models;
 using System.Text;
 using System;
+using Prometheus;
 
 namespace Blog.Code
 {
@@ -27,18 +28,18 @@ namespace Blog.Code
             PropertyNamingPolicy = JsonNamingPolicy.CamelCase
         };
 
-        private readonly string _contentRoot;
-        private readonly IEventLogger _eventLogger;
+        private static readonly Counter PostViewCount = Metrics.CreateCounter("blogpost_views_total", "Number of blogposts loaded.", labelNames: new [] { "slug" });
+        private static readonly Histogram PostLoadDuration = Metrics.CreateHistogram("blogpost_load_duration_ms", "Time taken to load a post in milliseconds.");
 
-        public PostResolver(string webRootPath, IEventLogger eventLogger)
+        private readonly string _contentRoot;
+
+        public PostResolver(string webRootPath)
         {
             _contentRoot = Path.Join(webRootPath, _contentDirectoryName);
 
             _markdownPipeline = new MarkdownPipelineBuilder()
                 .UseAdvancedExtensions()
                 .Build();
-            
-            _eventLogger = eventLogger;
         }
 
         public IEnumerable<PostMetadata> GetMetadataIndex()
@@ -53,32 +54,35 @@ namespace Blog.Code
         {
             try
             {
-                var postPath = Path.Join(_contentRoot, $"{slug}{_postExtenion}");
-                var postData = File.ReadAllText(postPath);
+                using(PostLoadDuration.NewTimer()) 
+                {
+                    var postPath = Path.Join(_contentRoot, $"{slug}{_postExtenion}");
+                    var postData = File.ReadAllText(postPath);
 
-                var splitter = _contentSplitter;
+                    var splitter = _contentSplitter;
 
-                var splitIndex = postData.IndexOf(splitter);
-                var mdIndex = splitIndex + _contentSplitter.Length;
+                    var splitIndex = postData.IndexOf(splitter);
+                    var mdIndex = splitIndex + _contentSplitter.Length;
 
-                var frontMatter = postData.Substring(0, splitIndex);
-                var markdown = postData.Substring(mdIndex);
+                    var frontMatter = postData.Substring(0, splitIndex);
+                    var markdown = postData.Substring(mdIndex);
 
-                var metadata = JsonSerializer.Deserialize<PostMetadata>(frontMatter);
-                metadata.Slug = Path.GetFileNameWithoutExtension(postPath);
+                    var metadata = JsonSerializer.Deserialize<PostMetadata>(frontMatter);
+                    metadata.Slug = Path.GetFileNameWithoutExtension(postPath);
 
-                var post = new Post(metadata);
-                post.HtmlContent = Markdown.ToHtml(markdown.Trim(), _markdownPipeline);
+                    var post = new Post(metadata);
+                    post.HtmlContent = Markdown.ToHtml(markdown.Trim(), _markdownPipeline);
 
-                _eventLogger.LogPageview(slug);
-                Console.WriteLine($"Loaded data for page: {slug}");
+                    Console.WriteLine($"Loaded data for page: {slug}");
 
-                return post;
+                    PostViewCount.WithLabels(slug).Inc();
+
+                    return post;
+                }
             }
             catch (Exception ex)
             {
                 Console.Error.WriteLine($"Failed to load post: {slug} !! {ex.Message} | {ex.StackTrace}");
-                _eventLogger.LogPageMiss(slug);
                 return null;
             }
         }
