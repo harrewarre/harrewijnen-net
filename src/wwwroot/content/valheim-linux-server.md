@@ -53,7 +53,7 @@ There is not a lot to change but it's a requirement if you want to set up things
 
 I've added an additional export at the top (found after a bunch of searching for specific problems) to prevent some warnings and errors while the game starts. You could maybe get by without it, it'll depend on the rest of your system. If you see weird stuff in the game output, it's worth a shot.
 
-Update the value for the `-name` argument to something you nice and of course set the `-password` value. **Make sure it is longer than 5 characters and is not your server name.**
+Update the value for the `-name` argument to something you like and of course set the `-password` value. **Make sure it is longer than 5 characters and is not your server name.**
 
 ## Port configuration
 
