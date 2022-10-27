@@ -15,7 +15,7 @@
 
 # It all starts with smaller stories 
 
-Most development teams have been in an eternal struggle with a huge backlog and work staying in progress for days or even weeks (or... months!) on end. This long running work eventually gets merged and released but it turns out it's the wrong thing and a large part needs rework. 
+I think most developers have experienced a taks sitting in progress for days or even weeks (or... months!) on end. This long running work eventually gets merged and released but it turns out it's the wrong thing and a large part needs rework. 
 
 The solution to this struggle is two-fold. The first half is getting invested in your customers. Talk to them, establish a good relation with the people that actually use the product you are building. Find out what they really need. This practice is known as User Centered Design and while I find it very interesting, it's not the topic of this post. We're looking at the other half, breaking down work into smaller pieces and the result of doing so. 
 
