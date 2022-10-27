@@ -57,7 +57,7 @@ Update the value for the `-name` argument to something you like and of course se
 
 ## Port configuration
 
-This step will depend on your network infrastructure, I'm running my server on the Azure cloud platform which has its own way of configuring ports for VMs. Your setup is probably different but the gist of all of it is that you need op open the port range **`2456-2458`** for incoming traffic.
+This step will depend on your network infrastructure, I'm running my server on the Azure cloud platform which has its own way of configuring ports for VMs. Your setup is probably different but the gist of all of it is that you need to open the port range **`2456-2458`** for incoming traffic.
 
 ## Running the server
 
