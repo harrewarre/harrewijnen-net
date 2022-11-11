@@ -26,7 +26,7 @@ var app = builder.Build();
 
 app.UseStaticFiles();
 
-app.UseStaticFiles(new StaticFileOptions    //For the '.well-known' folder
+app.UseStaticFiles(new StaticFileOptions
 {
     FileProvider = new PhysicalFileProvider(System.IO.Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", ".well-known")),
     RequestPath = "/.well-known",
