@@ -1,23 +1,23 @@
 {
-    "subject": "acct:harre@mstdn.party",
+    "subject": "acct:harre@hachyderm.io",
     "aliases": [
-        "https://mstdn.party/@harre",
-        "https://mstdn.party/users/harre"
+        "https://hachyderm.io/@harre",
+        "https://hachyderm.io/users/harre"
     ],
     "links": [
         {
             "rel": "http://webfinger.net/rel/profile-page",
             "type": "text/html",
-            "href": "https://mstdn.party/@harre"
+            "href": "https://hachyderm.io/@harre"
         },
         {
             "rel": "self",
             "type": "application/activity+json",
-            "href": "https://mstdn.party/users/harre"
+            "href": "https://hachyderm.io/users/harre"
         },
         {
             "rel": "http://ostatus.org/schema/1.0/subscribe",
-            "template": "https://mstdn.party/authorize_interaction?uri={uri}"
+            "template": "https://hachyderm.io/authorize_interaction?uri={uri}"
         }
     ]
 }
