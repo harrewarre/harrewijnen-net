@@ -4,7 +4,9 @@
     "slug": "valheim-linux-server",
     "tags": [
         "Gaming",
-        "Linux"
+        "Linux",
+        "SteamCMD",
+        "Valheim"
     ],
     "created": "2021-09-12"
 }
