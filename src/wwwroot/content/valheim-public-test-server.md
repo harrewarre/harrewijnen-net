@@ -14,6 +14,12 @@
 
 # Valheim public-test server
 
+**UPDATE**
+
+The testing appears to be done and is now part of the regular version of the game. This is still a handy guide for any future betas though.
+
+---
+
 Here's a cool update for [your Valheim linux server](/blog/valheim-linux-server) if you're up from some beta testing.
 
 The Valheim devs announced the Mistlands update and we can all get in on the action early through a beta branch on Steam (and GamePass). You can find out more about the update [here](https://valheim.com/news/mistlands-public-test/) and there's a nice trailer [here](https://youtu.be/cZOuBjvETR8).
