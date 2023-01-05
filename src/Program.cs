@@ -5,7 +5,6 @@ using Microsoft.Extensions.DependencyInjection;
 using Blog.Code;
 using Microsoft.Extensions.FileProviders;
 using System.IO;
-using Microsoft.AspNetCore.StaticFiles;
 
 var builder = WebApplication.CreateBuilder(args);
 
