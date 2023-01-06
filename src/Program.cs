@@ -6,6 +6,8 @@ using Blog.Code;
 using Microsoft.Extensions.FileProviders;
 using System.IO;
 using Blog.Repository;
+using Blog.MarkdownSupport;
+using Blog.JsonSupport;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,7 +16,9 @@ builder.Services.AddSingleton<IPostRepository>(p => {
     return new PostRepository(hostingEnvironment.WebRootPath);
 });
 
+builder.Services.AddSingleton<IMarkdownParser, MarkdownParser>();
 builder.Services.AddSingleton<IPostResolver, PostResolver>();
+builder.Services.AddSingleton<IJsonParser, JsonParser>();
 
 builder.Services.Configure<RouteOptions>(options =>
 {

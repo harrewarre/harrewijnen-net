@@ -1,10 +1,10 @@
 using System.Collections.Generic;
 using System.Linq;
-using System.Text.Json;
-using Markdig;
 using Blog.Code.Models;
 using System;
 using Blog.Repository;
+using Blog.MarkdownSupport;
+using Blog.JsonSupport;
 
 namespace Blog.Code
 {
@@ -18,21 +18,15 @@ namespace Blog.Code
     {
         private readonly string _contentSplitter = "---";
 
-        private readonly MarkdownPipeline _markdownPipeline;
-        private readonly JsonSerializerOptions _metaSerializeOptions = new JsonSerializerOptions
-        {
-            PropertyNamingPolicy = JsonNamingPolicy.CamelCase
-        };
-
         private readonly IPostRepository _postRepository;
+        private readonly IMarkdownParser _markdownParser;
+        private readonly IJsonParser _jsonParser;
 
-        public PostResolver(IPostRepository fileSystem)
+        public PostResolver(IPostRepository repo, IMarkdownParser markdownParser, IJsonParser jsonParser)
         {
-            _markdownPipeline = new MarkdownPipelineBuilder()
-                .UseAdvancedExtensions()
-                .Build();
-
-            _postRepository = fileSystem;
+            _postRepository = repo;
+            _markdownParser = markdownParser;
+            _jsonParser = jsonParser;
         }
 
         public IEnumerable<PostMetadata> GetMetadataIndex()
@@ -55,11 +49,11 @@ namespace Blog.Code
                 var frontMatter = postData.Substring(0, splitIndex);
                 var content = postData.Substring(contentSplitIndex);
 
-                var metadata = ParseMetadata(frontMatter);
+                var metadata = _jsonParser.ParseJson<PostMetadata>(frontMatter);
                 metadata.Slug = slug;
 
                 var post = new Post(metadata);
-                post.HtmlContent = ParseContent(content);
+                post.HtmlContent = _markdownParser.GetHtml(content);
 
                 Console.WriteLine($"--- Loaded data for page: {slug}");
 
@@ -78,20 +72,10 @@ namespace Blog.Code
             
             var metadataContent = _postRepository.GetPostMetadataContent(slug);
 
-            var metadata = ParseMetadata(metadataContent);
+            var metadata = _jsonParser.ParseJson<PostMetadata>(metadataContent);
             metadata.Slug = slug;
 
             return metadata;
-        }
-
-        private PostMetadata ParseMetadata(string metadataJson)
-        {
-            return JsonSerializer.Deserialize<PostMetadata>(metadataJson);
-        }
-
-        private string ParseContent(string content)
-        {
-            return Markdown.ToHtml(content.Trim(), _markdownPipeline);
         }
     }
 }
