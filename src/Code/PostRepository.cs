@@ -2,7 +2,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 
-namespace Blog.Repository;
+namespace Blog.Code;
 
 public interface IPostRepository
 {
