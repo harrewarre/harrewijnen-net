@@ -6,6 +6,7 @@ using Markdig;
 using Blog.Code.Models;
 using System.Text;
 using System;
+using Blog.FileSystemSupport;
 
 namespace Blog.Code
 {
@@ -18,30 +19,28 @@ namespace Blog.Code
     public class PostResolver : IPostResolver
     {
         private readonly string _contentSplitter = "---";
+
         private readonly MarkdownPipeline _markdownPipeline;
-        private readonly string _postSearchPattern = "*.md";
-        private readonly string _postExtenion = ".md";
-        private readonly string _contentDirectoryName = "content";
         private readonly JsonSerializerOptions _metaSerializeOptions = new JsonSerializerOptions
         {
             PropertyNamingPolicy = JsonNamingPolicy.CamelCase
         };
 
-        private readonly string _contentRoot;
+        private readonly IFileSystem _fileSystem;
 
-        public PostResolver(string webRootPath)
+        public PostResolver(IFileSystem fileSystem)
         {
-            _contentRoot = Path.Join(webRootPath, _contentDirectoryName);
-
             _markdownPipeline = new MarkdownPipelineBuilder()
                 .UseAdvancedExtensions()
                 .Build();
+
+            _fileSystem = fileSystem;
         }
 
         public IEnumerable<PostMetadata> GetMetadataIndex()
         {
-            var posts = Directory.GetFiles(_contentRoot, _postSearchPattern);
-            var index = posts.Select(p => LoadMetadata(p));
+            var slugs = _fileSystem.GetPostIndex();
+            var index = slugs.Select(slug => LoadMetadata(slug));
 
             return index.OrderByDescending(p => p.Created);
         }
@@ -50,60 +49,51 @@ namespace Blog.Code
         {
             try
             {
-                var postPath = Path.Join(_contentRoot, $"{slug}{_postExtenion}");
-                var postData = File.ReadAllText(postPath);
+                var postData = _fileSystem.GetPostContent(slug);
 
-                var splitter = _contentSplitter;
-
-                var splitIndex = postData.IndexOf(splitter);
-                var mdIndex = splitIndex + _contentSplitter.Length;
+                var splitIndex = postData.IndexOf(_contentSplitter);
+                var contentSplitIndex = splitIndex + _contentSplitter.Length;
 
                 var frontMatter = postData.Substring(0, splitIndex);
-                var markdown = postData.Substring(mdIndex);
+                var content = postData.Substring(contentSplitIndex);
 
-                var metadata = JsonSerializer.Deserialize<PostMetadata>(frontMatter);
-                metadata.Slug = Path.GetFileNameWithoutExtension(postPath);
+                var metadata = ParseMetadata(frontMatter);
+                metadata.Slug = slug;
 
                 var post = new Post(metadata);
-                post.HtmlContent = Markdown.ToHtml(markdown.Trim(), _markdownPipeline);
+                post.HtmlContent = ParseContent(content);
 
-                Console.WriteLine($"Loaded data for page: {slug}");
+                Console.WriteLine($"--- Loaded data for page: {slug}");
 
                 return post;
-            }
+            } 
             catch (Exception ex)
             {
-                Console.Error.WriteLine($"Failed to load post: {slug} !! {ex.Message} | {ex.StackTrace}");
+                Console.Error.WriteLine($"--- Failed to load post: {slug} !! {ex.Message} | {ex.StackTrace}");
                 return null;
             }
         }
 
-        private PostMetadata LoadMetadata(string postPath)
+        private PostMetadata LoadMetadata(string slug)
         {
-            Console.WriteLine($"--- Loading metadata for {postPath}");
+            Console.WriteLine($"--- Loading metadata for {slug}");
+            
+            var metadataContent = _fileSystem.GetPostMetadataContent(slug);
 
-            using (var sr = new StreamReader(postPath))
-            {
-                var builder = new StringBuilder();
+            var metadata = ParseMetadata(metadataContent);
+            metadata.Slug = slug;
 
-                string line = string.Empty;
-                while ((line = sr.ReadLine()) != null)
-                {
-                    if (line == _contentSplitter)
-                    {
-                        break;
-                    }
+            return metadata;
+        }
 
-                    builder.Append(line);
-                }
+        private PostMetadata ParseMetadata(string metadataJson)
+        {
+            return JsonSerializer.Deserialize<PostMetadata>(metadataJson);
+        }
 
-                var content = builder.ToString();
-
-                var metadata = JsonSerializer.Deserialize<PostMetadata>(content);
-                metadata.Slug = Path.GetFileNameWithoutExtension(postPath);
-
-                return metadata;
-            }
+        private string ParseContent(string content)
+        {
+            return Markdown.ToHtml(content.Trim(), _markdownPipeline);
         }
     }
 }

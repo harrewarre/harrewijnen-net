@@ -5,14 +5,16 @@ using Microsoft.Extensions.DependencyInjection;
 using Blog.Code;
 using Microsoft.Extensions.FileProviders;
 using System.IO;
+using Blog.FileSystemSupport;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddSingleton<IPostResolver>(provider =>
-{
-    var hostingEnvironment = provider.GetService<IWebHostEnvironment>();
-    return new PostResolver(hostingEnvironment.WebRootPath);
+builder.Services.AddSingleton<IFileSystem>(p => {
+    var hostingEnvironment = p.GetService<IWebHostEnvironment>();
+    return new FileSystem(hostingEnvironment.WebRootPath);
 });
+
+builder.Services.AddSingleton<IPostResolver, PostResolver>();
 
 builder.Services.Configure<RouteOptions>(options =>
 {
