@@ -1,11 +1,10 @@
-using System;
 using System.IO;
 using System.Linq;
 using System.Text;
 
-namespace Blog.FileSystemSupport;
+namespace Blog.Repository;
 
-public interface IFileSystem
+public interface IPostRepository
 {
     string[] GetPostIndex();
 
@@ -14,13 +13,13 @@ public interface IFileSystem
     string GetPostMetadataContent(string slug);
 }
 
-public class FileSystem : IFileSystem
+public class PostRepository : IPostRepository
 {
     private readonly string _indexSearchPattern = "*.md";
     private readonly string _contentSplitter = "---";
     private readonly string _contentRoot;
 
-    public FileSystem(string contentRoot)
+    public PostRepository(string contentRoot)
     {
         _contentRoot = $"{contentRoot}/content";
     }

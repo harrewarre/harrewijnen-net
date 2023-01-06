@@ -1,12 +1,10 @@
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Text.Json;
 using Markdig;
 using Blog.Code.Models;
-using System.Text;
 using System;
-using Blog.FileSystemSupport;
+using Blog.Repository;
 
 namespace Blog.Code
 {
@@ -26,20 +24,20 @@ namespace Blog.Code
             PropertyNamingPolicy = JsonNamingPolicy.CamelCase
         };
 
-        private readonly IFileSystem _fileSystem;
+        private readonly IPostRepository _postRepository;
 
-        public PostResolver(IFileSystem fileSystem)
+        public PostResolver(IPostRepository fileSystem)
         {
             _markdownPipeline = new MarkdownPipelineBuilder()
                 .UseAdvancedExtensions()
                 .Build();
 
-            _fileSystem = fileSystem;
+            _postRepository = fileSystem;
         }
 
         public IEnumerable<PostMetadata> GetMetadataIndex()
         {
-            var slugs = _fileSystem.GetPostIndex();
+            var slugs = _postRepository.GetPostIndex();
             var index = slugs.Select(slug => LoadMetadata(slug));
 
             return index.OrderByDescending(p => p.Created);
@@ -49,7 +47,7 @@ namespace Blog.Code
         {
             try
             {
-                var postData = _fileSystem.GetPostContent(slug);
+                var postData = _postRepository.GetPostContent(slug);
 
                 var splitIndex = postData.IndexOf(_contentSplitter);
                 var contentSplitIndex = splitIndex + _contentSplitter.Length;
@@ -78,7 +76,7 @@ namespace Blog.Code
         {
             Console.WriteLine($"--- Loading metadata for {slug}");
             
-            var metadataContent = _fileSystem.GetPostMetadataContent(slug);
+            var metadataContent = _postRepository.GetPostMetadataContent(slug);
 
             var metadata = ParseMetadata(metadataContent);
             metadata.Slug = slug;

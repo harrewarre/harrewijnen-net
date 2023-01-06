@@ -5,13 +5,13 @@ using Microsoft.Extensions.DependencyInjection;
 using Blog.Code;
 using Microsoft.Extensions.FileProviders;
 using System.IO;
-using Blog.FileSystemSupport;
+using Blog.Repository;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddSingleton<IFileSystem>(p => {
+builder.Services.AddSingleton<IPostRepository>(p => {
     var hostingEnvironment = p.GetService<IWebHostEnvironment>();
-    return new FileSystem(hostingEnvironment.WebRootPath);
+    return new PostRepository(hostingEnvironment.WebRootPath);
 });
 
 builder.Services.AddSingleton<IPostResolver, PostResolver>();
