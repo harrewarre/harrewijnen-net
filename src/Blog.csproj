@@ -8,10 +8,4 @@
     <PackageReference Include="Markdig" Version="0.26.0" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Content Include="wwwroot\.well-known\webfinger">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-  </ItemGroup>
-
 </Project>
