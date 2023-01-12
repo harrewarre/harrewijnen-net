@@ -8,9 +8,7 @@ COPY Blog.csproj Blog.csproj
 RUN dotnet restore
 
 COPY . .
-RUN dotnet publish -o /artifact
-
-RUN ls /artifact
+RUN dotnet publish -c Release -o /artifact
 
 FROM mcr.microsoft.com/dotnet/aspnet:6.0 as RUNNER
 
