@@ -6,7 +6,6 @@
 
   <ItemGroup>
     <PackageReference Include="Markdig" Version="0.26.0" />
-    <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" version="2.16.0" />
   </ItemGroup>
 
   <ItemGroup>
