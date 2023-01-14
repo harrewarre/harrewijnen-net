@@ -1,16 +1,16 @@
 using System.Collections.Generic;
 using System.Linq;
-using Blog.Code.Models;
+using Blog.Post.Models;
 using System;
 using Blog.MarkdownSupport;
 using Blog.JsonSupport;
 
-namespace Blog.Code;
+namespace Blog.Post;
 
 public interface IPostResolver
 {
-    IEnumerable<PostMetadata> GetMetadataIndex();
-    Post GetPost(string slug);
+    IEnumerable<BlogPostMetadata> GetMetadataIndex();
+    BlogPost GetPost(string slug);
 }
 
 public class PostResolver : IPostResolver
@@ -28,7 +28,7 @@ public class PostResolver : IPostResolver
         _jsonParser = jsonParser;
     }
 
-    public IEnumerable<PostMetadata> GetMetadataIndex()
+    public IEnumerable<BlogPostMetadata> GetMetadataIndex()
     {
         var slugs = _postRepository.GetPostIndex();
         var index = slugs.Select(slug => LoadMetadata(slug));
@@ -36,7 +36,7 @@ public class PostResolver : IPostResolver
         return index.OrderByDescending(p => p.Created);
     }
 
-    public Post GetPost(string slug)
+    public BlogPost GetPost(string slug)
     {
         try
         {
@@ -48,10 +48,10 @@ public class PostResolver : IPostResolver
             var frontMatter = postData.Substring(0, splitIndex);
             var content = postData.Substring(contentSplitIndex);
 
-            var metadata = _jsonParser.ParseJson<PostMetadata>(frontMatter);
+            var metadata = _jsonParser.ParseJson<BlogPostMetadata>(frontMatter);
             metadata.Slug = slug;
 
-            var post = new Post(metadata);
+            var post = new BlogPost(metadata);
             post.HtmlContent = _markdownParser.GetHtml(content);
 
             Console.WriteLine($"--- Loaded data for page: {slug}");
@@ -65,13 +65,13 @@ public class PostResolver : IPostResolver
         }
     }
 
-    private PostMetadata LoadMetadata(string slug)
+    private BlogPostMetadata LoadMetadata(string slug)
     {
         Console.WriteLine($"--- Loading metadata for {slug}");
 
         var metadataContent = _postRepository.GetPostMetadataContent(slug);
 
-        var metadata = _jsonParser.ParseJson<PostMetadata>(metadataContent);
+        var metadata = _jsonParser.ParseJson<BlogPostMetadata>(metadataContent);
         metadata.Slug = slug;
 
         return metadata;

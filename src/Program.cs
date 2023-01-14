@@ -2,7 +2,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Routing;
 using Microsoft.Extensions.DependencyInjection;
-using Blog.Code;
+using Blog.Post;
 using Microsoft.Extensions.FileProviders;
 using System.IO;
 using Blog.MarkdownSupport;
