@@ -20,6 +20,6 @@ public class MarkdownParser : IMarkdownParser
 
     public string GetHtml(string markdown)
     {
-        return Markdown.ToHtml(markdown.Trim(), _markdownPipeline);
+        return Markdown.ToHtml(markdown.Trim(), _markdownPipeline).Trim();
     }
 }
