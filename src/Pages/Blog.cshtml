@@ -1,36 +1,48 @@
 @page "{slug?}"
-@using Blog.Post
+@using Blog.Post;
+@using Blog.OpenGraphSupport;
 @inject IPostResolver _postResolver;
+
+@{
+    var slug = RouteData.Values["slug"] as string;
+    var isEmptySlug = string.IsNullOrWhiteSpace(slug);
+    
+    if (isEmptySlug)
+    {
+        Response.Redirect("/404");
+        return;
+    }
+
+    var post = _postResolver.GetPost(slug);
+
+    if(post == null)
+    {
+        Response.Redirect("/404");
+        return;
+    }
+
+    ViewData["Title"] = post.Metadata.Title;
+}
+
+@section Head{
+    @{
+        var url = $"{Request.Scheme}://{Request.Host.Value}/blog/{slug}";  
+        var graphData = new OpenGraphData(post.Metadata.Title, post.Metadata.Summary, url, "article");
+    }
+
+    <partial name="_OpenGraph" model="graphData"></partial>
+}
+
 <main>
     @{
-        var slug = RouteData.Values["slug"] as string;
-
-        if (!string.IsNullOrWhiteSpace(slug))
-        {
-            var post = _postResolver.GetPost(slug);
-
-            if (post == null)
-            {
-                Response.Redirect("/404");
-                return;
-            }
-
-            ViewData["Title"] = post.Metadata.Title;
-
-            <article class="post">
-                @Html.Raw(post.HtmlContent)
-            </article>
-            <p>
-                <small>
-                    <span>Posted on <partial name="_FormattedDate" model="post.Metadata.Created"></partial></span><br />
-                    <span>Tagged <partial name="_TagList" model="post.Metadata.Tags"></partial></span>
-                </small>
-            </p>
-
-        }
-        else
-        {
-            <h1>No content here...</h1>
-        }
+    <article class="post">
+        @Html.Raw(post.HtmlContent)
+    </article>
+    <p>
+        <small>
+            <span>Posted on <partial name="_FormattedDate" model="post.Metadata.Created"></partial></span><br />
+            <span>Tagged <partial name="_TagList" model="post.Metadata.Tags"></partial></span>
+        </small>
+    </p>
     }
 </main>

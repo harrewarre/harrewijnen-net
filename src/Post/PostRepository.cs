@@ -34,6 +34,12 @@ public class PostRepository : IPostRepository
     public string GetPostContent(string slug)
     {
         var path = CreatePostPath(slug);
+
+        if(!File.Exists(path))
+        {
+            return null;
+        }
+
         return File.ReadAllText(path);
     }
 

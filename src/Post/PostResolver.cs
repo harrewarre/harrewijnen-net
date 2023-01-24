@@ -42,6 +42,12 @@ public class PostResolver : IPostResolver
         {
             var postData = _postRepository.GetPostContent(slug);
 
+            if (postData == null)
+            {
+                Console.Error.WriteLine($"--- Tried to load page {slug} but found nothing!");
+                return null;
+            }
+
             var splitIndex = postData.IndexOf(_contentSplitter);
             var contentSplitIndex = splitIndex + _contentSplitter.Length;
 

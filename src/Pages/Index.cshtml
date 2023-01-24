@@ -1,6 +1,17 @@
 ﻿@page
-@using Blog.Post
+@using Blog.Post;
+@using Blog.OpenGraphSupport;
 @inject IPostResolver _resolver;
+
+@section Head{
+    @{
+        var host = $"{Request.Scheme}://{Request.Host.Value}";  
+        var graphData = new OpenGraphData("Harrewijnen.net", "A blog by Sander Harrewijnen.", host, "website");
+    }
+
+    <partial name="_OpenGraph" model="graphData"></partial>
+}
+
 @{
     ViewData["Title"] = "Home";
     var index = _resolver.GetMetadataIndex();
