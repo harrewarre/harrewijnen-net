@@ -1,6 +1,6 @@
 {
   "slug": "netcore-steeltoe-config-loading",
-  "title": "Reading Cloud Foundry app configuration using SteelToe in ASP.NET Core",
+  "title": "Cloud Foundry configuration with SteelToe",
   "summary": "A look at loading configuration using SteelToe and making it injectable",
   "tags": [
     "cloud foundry",
