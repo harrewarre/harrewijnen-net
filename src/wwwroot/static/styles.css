@@ -6,7 +6,7 @@
 :root {
     --accent: #FF0033;
     --text-color: #111;
-    --background: #BBB;
+    --background: #DDD;
 }
 
 body,
@@ -15,12 +15,16 @@ html {
     margin: 0;
     color: var(--text-color);
     background-color: var(--background);
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-family: 'Courier New', Courier, monospace;
 }
 
 a {
     color: var(--text-color);
     text-decoration-color: var(--accent);
+}
+
+p {
+    line-height: 1.25rem;
 }
 
 .blog {
@@ -72,22 +76,16 @@ article.post h1::before {
 }
 
 article.post-summary {
-    margin-bottom: 2rem;
+    margin-bottom: .25rem;
     display: flex;
 }
 
-article.post-summary h1 {
-    margin: 0;
+article.post-summary > time {
+    flex: 0 0 auto;
 }
 
-article.post-summary p {
-    margin: .5rem 0;
-}
-
-article.post-summary .datetime,
-article.post-summary .tags {
-    display: block;
-    font-size: .75rem;
+article.post-summary .splitter {
+    margin: 0 .5rem;
 }
 
 pre {

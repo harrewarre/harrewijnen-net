@@ -2,13 +2,7 @@
 @model BlogPostMetadata
 
 <article class="post-summary">
-    <img class="post-icon" src="~/static/box.svg" />
-    <div>
-        <h1>
-            <a href="/blog/@Model.Slug">@Model.Title</a>
-        </h1>
-        <p>@Model.Summary</p>
         <partial name="_FormattedDate" model="@Model.Created"></partial>
-        <partial name="_TagList" model="@Model.Tags"></partial>
-    </div>
+        <span class="splitter">::</span>
+        <a href="/blog/@Model.Slug">@Model.Title</a>
 </article>
