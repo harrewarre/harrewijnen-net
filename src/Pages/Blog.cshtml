@@ -34,15 +34,11 @@
 }
 
 <main>
-    @{
     <article class="post">
         @Html.Raw(post.HtmlContent)
     </article>
-    <p>
-        <small>
-            <span>Posted on <partial name="_FormattedDate" model="post.Metadata.Created"></partial></span><br />
-            <span>Tagged <partial name="_TagList" model="post.Metadata.Tags"></partial></span>
-        </small>
-    </p>
-    }
+    <small>
+        <span>Posted on <partial name="_FormattedDate" model="post.Metadata.Created"></partial></span><br />
+        <span>Tagged <partial name="_TagList" model="post.Metadata.Tags"></partial></span>
+    </small>
 </main>
