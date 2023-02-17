@@ -107,7 +107,7 @@ The container is passed into the service itself through its constructor, where w
 Now that the container is in charge of dependecies at the very root of our application, we can start injecting things into services like we would in any constructor injection scenario.
 You can check out the other service in the demo project for a little preview where I use the `IDiagnosticsTracer` inside the NameService to report any activity.
 
-![Listeners](/Content/sf-multiple-listeners/sf-multiple-listeners/sf-listeners.png)
+![Listeners](/content/sf-multiple-listeners/sf-multiple-listeners/sf-listeners.png)
 
 The service is now complete but we don't have a way to access it yet from the Api project. We can remote into the service using a `Proxy` that is created based on the service interface in the `Interfaces` project.
 It's almost the same as setting up a normal project with one notable exception, we have to pass in the name of the listener we want to talk to:

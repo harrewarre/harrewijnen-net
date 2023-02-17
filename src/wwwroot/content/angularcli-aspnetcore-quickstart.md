@@ -111,7 +111,7 @@ To make sure we got this right, it's time to start it all up. First thing is bui
 Next run `dotnet build` to compile the API, after that run `dotnet run` to start it up. Open a browser and go the URL that was given after running running the API project (in my case http://localhost:5000). You should be greeted with the following
 default angular page:
 
-![Angular app](/Content/angularcli-aspnetcore-quickstart/angular.png)
+![Angular app](/content/angularcli-aspnetcore-quickstart/angular.png)
 
 ## Auto-reloading.
 
@@ -201,7 +201,7 @@ When it's up and running, open a second command prompt and run the following to 
 
 This will launch a second webserver hosting the angular app with hot reloading enabled, our proxy configuration will make sure that any request to URLs starting with `/api` will be forwarded to our web API. If you've done all of the above and browse to the angular app URL (http://localhost:4200 for me), you should be seeing this page:
 
-![Angular app](/Content/angularcli-aspnetcore-quickstart/angular-serve.png)
+![Angular app](/content/angularcli-aspnetcore-quickstart/angular-serve.png)
 
 It's a lot to take in all at once, but this is a once-per-project setup. You'll get all the nice reloading features while still being able to debug the "real" API when working on the client-side app. Bonus points if you also enable watching on the web API project and you'll get hot reloading on both ends.
 

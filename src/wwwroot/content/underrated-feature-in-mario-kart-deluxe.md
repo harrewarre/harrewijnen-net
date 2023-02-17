@@ -11,7 +11,7 @@
 ---
 # An underrated feature in Mario Kart 8 Deluxe
 
-![Mario Kart 8 Deluxe](/Content/underrated-feature-in-mario-kart-deluxe/mk8-screen.jpg)
+![Mario Kart 8 Deluxe](/content/underrated-feature-in-mario-kart-deluxe/mk8-screen.jpg)
 
 I recently became the owner of a Nintendo Switch and with it, Mario Kart 8 Deluxe. 
 
@@ -23,13 +23,13 @@ turn at the entrance of the shortcut and following the "correct" path I had to l
 
 It turns out Mario kart has an assisted racing mode! Which... can .. do .. most of the .. racing for you ... And it wasn't all to obvious how to turn those of.
 
-![Mario Kart 8 Deluxe assists search](/Content/underrated-feature-in-mario-kart-deluxe/mk8-search-result.png)
+![Mario Kart 8 Deluxe assists search](/content/underrated-feature-in-mario-kart-deluxe/mk8-search-result.png)
 
 Google will of course tell you how, but if you ended up here, look no further:
 
 When selecting a kart before starting a race, press the `+` button on the Switch. This will open a stats menu for your kart. Below that menu are three icons depicting each of the available assists you can use.
 
-![Mario Kart 8 Deluxe assists](/Content/underrated-feature-in-mario-kart-deluxe/mk8-assists.jpg)
+![Mario Kart 8 Deluxe assists](/content/underrated-feature-in-mario-kart-deluxe/mk8-assists.jpg)
 
 The `L` button controls steering assist, `R` controls throttle assist (turn on both for a self-driving kart) and `Y` let's you enable or disable the motion controls.
 
