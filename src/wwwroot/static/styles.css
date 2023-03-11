@@ -21,33 +21,33 @@ a {
 
 
 h1 {
-    font-size: 38px;
-    line-height: 46px;
+    font-size: 32px;
+    line-height: 40px;
 }
 
 h2 {
-    font-size: 34px;
-    line-height: 42px;
+    font-size: 28px;
+    line-height: 36px;
 }
 
 h3 {
-    font-size: 30px;
-    line-height: 38px;
+    font-size: 22px;
+    line-height: 32px;
 }
 
 h4 {
-    font-size: 26px;
-    line-height: 34px;
+    font-size: 20px;
+    line-height: 18px;
 }
 
 h5 {
-    font-size: 22px;
-    line-height: 36px;
+    font-size: 18px;
+    line-height: 16px;
 }
 
 h6 { 
     font-size: 18px;
-    line-height: 26px;
+    line-height: 16px;
 }
 
 img,
@@ -74,9 +74,21 @@ small {
     font-size: 12px;
 }
 
+header {
+    display: flex;
+}
+
 header h1 {
     font-size: 28px;
     line-height: 36px;
+}
+
+header img.logo {
+    border: 0;
+    box-shadow: none;
+    background-color: transparent;
+    height: 100px;
+    margin-right: 20px;
 }
 
 nav a {
