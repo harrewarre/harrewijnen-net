@@ -76,6 +76,9 @@ small {
 
 header {
     display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
 }
 
 header h1 {
@@ -131,5 +134,10 @@ footer {
     .blog {
         margin: 0 auto;
         max-width: 800px;
+    }
+
+    header {
+        flex-direction: row;
+        text-align: left;
     }
 }
