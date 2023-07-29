@@ -1,5 +1,5 @@
 {
-    "title": "Gming on your phone",
+    "title": "Gaming on your phone",
     "summary": "Some good games to play on your phone",
     "slug": "mobile-phone-games",
     "tags": [
