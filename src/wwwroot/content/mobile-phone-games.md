@@ -19,7 +19,7 @@ Mobile phone gaming is kind of a trash fire with a few gems hidden here and ther
 
 Not all free, but definitely worth the price if you want to play some games on your phone that aren't ad infested garbage.
 
-### Vampire Survivors.
+### Vampire Survivors
 
 Simple mechanics with an absurd amount of replay-ability. 
 
