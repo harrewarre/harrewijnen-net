@@ -1,13 +1,14 @@
 {
     "title": "Gming on your phone",
-    "summary": "summary",
-    "slug": "mobile-games",
+    "summary": "Some good games to play on your phone",
+    "slug": "mobile-phone-games",
     "tags": [
         "gaming",
-        "mobile",
+        "mobile"
     ],
     "created": "2023-07-29"
 }
+
 ---
 
 # Mobile gaming
