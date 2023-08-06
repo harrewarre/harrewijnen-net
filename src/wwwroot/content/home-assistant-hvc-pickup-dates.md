@@ -12,7 +12,7 @@
 
 # HVC Trash pickup dates in Home Assistant
 
-Maybe something you can use, maybe not, but if you are in intersection of people who use Home Assistant and live in the Netherlands and in a region where HVC operates, this might be useful.
+Maybe something you can use, maybe not, but if you are in an intersection of people who use Home Assistant and live in the Netherlands and in a region where HVC operates, this might be useful.
 
 The integrations below will let you display a day counter until the next trash pickup takes place. This sensor data can also be used in other automations such as notifications or reminders.
 
