@@ -45,7 +45,7 @@ h5 {
     line-height: 16px;
 }
 
-h6 { 
+h6 {
     font-size: 18px;
     line-height: 16px;
 }
@@ -103,6 +103,10 @@ footer {
     margin: 15px 0;
 }
 
+figure>figcaption {
+    text-align: center;
+}
+
 .blog {
     margin: 0 5px;
 }
@@ -113,16 +117,16 @@ footer {
     flex-direction: column;
 }
 
-.post-summary > * {
+.post-summary>* {
     margin: 2px 0;
 }
 
-.post-summary > small {
+.post-summary>small {
     display: flex;
     flex-direction: column;
 }
 
-.post-summary > a {
+.post-summary>a {
     font-size: 22px;
 }
 
