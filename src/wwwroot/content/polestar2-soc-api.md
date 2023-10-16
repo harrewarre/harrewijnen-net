@@ -29,9 +29,7 @@ So it turns out we can easly get the battery state from the Tibber API for the P
 
 The very first thing you need to do is configure the Polestar "Power-up" in the Tibber app. It can be done right in the app and requires you sign into your Polestar account to configure it. Once that is done, we can start calling the Tibber API to get the battery state.
 
-After you sign into the [app API](https://app.tibber.com/) on the tibber website, you can run this query (still works at the time of writing):
-
-The ID fields in the query will depend on your account and car so you'll have to play around a bit with the API explorer to obtain them.
+After you sign into the [app API](https://app.tibber.com/) on the tibber website, you can run this query (still works at the time of writing - The ID fields in the query will depend on your account and car so you'll have to play around a bit with the API explorer to obtain them):
 
 ```graphQL
 {
@@ -185,3 +183,14 @@ public record TokenResponse
     public string Token { get; set; } = string.Empty;
 }
 ```
+
+After building and running the app, browse to the `/soc` endpoint and you should see something like this:
+
+```json
+{
+  "percent": 85,
+  "isCharging": false
+}
+```
+
+Enjoy!
