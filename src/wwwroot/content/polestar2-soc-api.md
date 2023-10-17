@@ -23,13 +23,13 @@ While Polestar does not offer any public API that I know of, Tibber does! Two of
 - https://developer.tibber.com/explorer
 - https://app.tibber.com/
 
-So it turns out we can easly get the battery state from the Tibber API for the Polestar 2 via Tibber. The only thing needed is a Tibber account (and a Polestar 2). The same API that powers the Tibber app, can be used programmatically as well. There is one catch with this approach though, and that is the authentication, the Tibber app API does not seem to support token generation so we'll need to sign in to the API with a username and password and then obtain a token that way. Not ideal but still not really a problem either.
+So it turns out we can easly get the battery state from the Tibber API for the Polestar 2. The only thing needed is a Tibber account (and, well... a Polestar 2). The same API that powers the Tibber app can be used programmatically as well. There is one catch with this approach though, and that is the authentication, the Tibber app API does not seem to support token generation so we'll need to sign in to the API with a username and password and then obtain a token that way. Not ideal but not really a problem either.
 
 ## Getting the battery state
 
 The very first thing you need to do is configure the Polestar "Power-up" in the Tibber app. It can be done right in the app and requires you sign into your Polestar account to configure it. Once that is done, we can start calling the Tibber API to get the battery state.
 
-After you sign into the [app API](https://app.tibber.com/) on the tibber website, you can run this query (still works at the time of writing - The ID fields in the query will depend on your account and car so you'll have to play around a bit with the API explorer to obtain them):
+After you sign into the [app API](https://app.tibber.com/), you can run this query (still works at the time of writing - The ID fields in the query will depend on your account and car so you'll have to play around a bit with the API explorer to obtain them):
 
 ```graphQL
 {
@@ -71,7 +71,7 @@ You can use the API explorer to figure out your home and vehicle ID. If everythi
 
 Given all the above, we can set up something that does all that work programmatically for us. Below you'll find some `dotnet core` C# code you can reference to get started.
 
-Knowing all this opens up many more options for us. We can now build our own app that can display the battery state, or we can integrate it into our home automation system. The possibilities are endless!
+Knowing all this opens up many more options for us. We can now build our own app that can display the battery state, or we can integrate it into our home automation system. The possibilities are endless! I do hope that this functionality will be exposed through the back-end API at some point where we can supply a token generated for our account and not expose a username/password combo.
 
 ### A quick-and-dirty sample implementation
 
@@ -193,4 +193,4 @@ After building and running the app, browse to the `/soc` endpoint and you should
 }
 ```
 
-Enjoy!
+Enjoy ⚡
