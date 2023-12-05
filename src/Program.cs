@@ -29,7 +29,6 @@ builder.Services.AddRazorPages();
 var app = builder.Build();
 
 app.UseStaticFiles();
-
 app.UseStaticFiles(new StaticFileOptions
 {
     FileProvider = new PhysicalFileProvider(System.IO.Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", ".well-known")),
@@ -39,12 +38,7 @@ app.UseStaticFiles(new StaticFileOptions
 });
 
 app.UseRouting();
-
 app.UseStatusCodePagesWithRedirects("/error?code={0}");
-
-app.UseEndpoints(endpoints =>
-{
-    endpoints.MapRazorPages();
-});
+app.MapRazorPages();
 
 app.Run();
