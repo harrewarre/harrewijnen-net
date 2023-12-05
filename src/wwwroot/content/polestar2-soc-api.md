@@ -1,5 +1,5 @@
 {
-    "title": "Polestar 2 battery state 'API'",
+    "title": "Polestar 2 battery state API",
     "summary": "How to read the battery state of a Polestar 2 using the Tibber API",
     "slug": "polestar2-soc-api",
     "tags": [
@@ -12,7 +12,7 @@
 }
 ---
 
-# Polestar 2 battery state 'API'
+# Polestar 2 battery state API
 
 Polestar (the car manufaturer) offers an app to control (a very limited) set of features of their cars remoteley (locks, and climate) and can display the state of the battery in % remaining. It's nice to have but the app isn't all that great and sometimes takes very long to show up-to-date information.
 
