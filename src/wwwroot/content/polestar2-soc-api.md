@@ -14,6 +14,12 @@
 
 # Polestar 2 battery state API
 
+**Update in 2024**:
+
+It appears that Polestar is working on a proper API and folks have been figuring out how to get to the data used by the mobile app. See [here](https://github.com/loebse/polestar_api/tree/main) for an example of a custom Home Assistant integration that surfaces quite a bit more than just the state of charge. This code will still work even with the existence of a polestar API but be aware that an official API might at some point appear.
+
+---
+
 Polestar (the car manufaturer) offers an app to control (a very limited) set of features of their cars remoteley (locks, and climate) and can display the state of the battery in % remaining. It's nice to have but the app isn't all that great and sometimes takes very long to show up-to-date information.
 
 Tibber (the electricity provider) recently started offering an integration on their platform that can read the battery state of the Polestar 2. Very handy of course, this particular app can show me state of charge and also how much electricity my car has used in the this month.
