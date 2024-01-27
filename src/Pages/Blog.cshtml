@@ -1,7 +1,12 @@
 @page "{slug?}"
+
+@using Microsoft.ApplicationInsights
+
 @using Blog.Post;
 @using Blog.OpenGraphSupport;
+
 @inject IPostResolver _postResolver;
+@inject TelemetryClient _telemetryClient;
 
 @{
     var slug = RouteData.Values["slug"] as string;
@@ -9,6 +14,7 @@
     
     if (isEmptySlug)
     {
+        _telemetryClient.TrackEvent("blogpost_no_slug");
         Response.Redirect("/404");
         return;
     }
@@ -17,10 +23,12 @@
 
     if(post == null)
     {
+        _telemetryClient.TrackEvent("blogpost_not_found", new Dictionary<string, string> { { "slug", slug } });
         Response.Redirect("/404");
         return;
     }
 
+    _telemetryClient.TrackEvent("blogpost_viewed", new Dictionary<string, string> { { "slug", slug } });
     ViewData["Title"] = post.Metadata.Title;
 }
 

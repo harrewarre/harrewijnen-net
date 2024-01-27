@@ -10,6 +10,8 @@ using Blog.JsonSupport;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddApplicationInsightsTelemetry();
+
 builder.Services.AddSingleton<IPostRepository>(p => {
     var hostingEnvironment = p.GetService<IWebHostEnvironment>();
     return new PostRepository(hostingEnvironment.WebRootPath);
